@@ -4,7 +4,9 @@ export _JAVA_OPTIONS='-Dfile.encoding=UTF-8'
 export LANG=C
 # 重複するコマンドを履歴に残さない
 export HISTCONTROL=ignoreboth:erasedups
-# よく使うコマンドは保存しない
+# よく使うコマンドは保存しない（:で区切る）
 export HISTIGNORE="cd*:ls*:pwd"
 # ヒストリのサイズを増やす
 export HISTSIZE=10000
+# lessの文字化け対策
+export LESSCHARSET=utf-8
