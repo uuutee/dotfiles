@@ -17,4 +17,5 @@ export HISTIGNORE="cd*:ls*:pwd"
 export HISTSIZE=10000
 # lessの文字化け対策
 export LESSCHARSET=utf-8
-
+# adbコマンドを使うため、platform-toolsのディレクトリを指定
+export PATH=$PATH:/Applications/adt-bundle-mac-x86/sdk/platform-tools
