@@ -1,7 +1,6 @@
 # for titanium
 ANDROID_SDK=/android-sdk
-PATH=$PATH:$ANDROID_SDK/tools
-export PATH
+export PATH=$PATH:$ANDROID_SDK/tools
 # titanium builder alias
 alias ibuilder='/Users/ut/Library/Application\ Support/Titanium/mobilesdk/osx/2.1.4.GA/iphone/builder.py'
 alias abuilder='/Users/ut/Library/Application\ Support/Titanium/mobilesdk/osx/2.1.4.GA/android/builder.py'
@@ -19,3 +18,6 @@ export HISTSIZE=10000
 export LESSCHARSET=utf-8
 # adbコマンドを使うため、platform-toolsのディレクトリを指定
 export PATH=$PATH:/Applications/adt-bundle-mac-x86/sdk/platform-tools
+# .rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
