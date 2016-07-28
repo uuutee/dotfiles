@@ -21,5 +21,9 @@ export PATH=$PATH:/Applications/adt-bundle-mac-x86/sdk/platform-tools
 # .rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+<<<<<<< HEAD
+# なぜか日本語が化けるようになったので
+export LANG=ja_JP.UTF-8
+export LESSCHARSET=utf-8
 # homebrewのctagsを使うようにする
-alias ctags="/usr/local/bin/ctags"
+alias ctags='/usr/local/bin/ctags'
