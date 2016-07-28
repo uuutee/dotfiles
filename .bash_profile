@@ -21,3 +21,5 @@ export PATH=$PATH:/Applications/adt-bundle-mac-x86/sdk/platform-tools
 # .rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+# homebrewのctagsを使うようにする
+alias ctags="/usr/local/bin/ctags"
