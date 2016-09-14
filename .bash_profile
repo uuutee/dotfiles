@@ -24,3 +24,5 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 # なぜか日本語が化けるようになったので
 export LANG=ja_JP.UTF-8
 export LESSCHARSET=utf-8
+# homebrewのctagsを使うようにする
+alias ctags='/usr/local/bin/ctags'
