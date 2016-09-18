@@ -36,9 +36,9 @@ if [ -e ${target} ]; then
 		# 最後の値以外なら ls
 		# 配列のlengthは ${#arr[@]} で取得
 		if [ "${next}" != "${#arr[@]}" ]; then
-			# ループ用変数をインクリメント
 			cur_dir=${cur_dir}${value}"/"
 
+			# awk -v name=value で shellの変数を使用できる
 			permission=`ls -l ${cur_dir} | awk -v file=${arr[${next}]} '($9 == file) { print $1 }'`
 			owner=`ls -l ${cur_dir} | awk -v file=${arr[${next}]} '($9 == file) { print $3 }'`
 			group=`ls -l ${cur_dir} | awk -v file=${arr[${next}]} '($9 == file) { print $4 }'`
@@ -51,6 +51,7 @@ if [ -e ${target} ]; then
 			"
 		fi
 
+		# ループ用変数をインクリメント
 		cur=`expr ${cur} + 1`
 		next=`expr ${next} + 1`
 	done
