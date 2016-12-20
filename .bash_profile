@@ -1,36 +1,38 @@
-# for titanium
-ANDROID_SDK=/android-sdk
-export PATH=$PATH:$ANDROID_SDK/tools
-# titanium builder alias
-alias ibuilder='/Users/ut/Library/Application\ Support/Titanium/mobilesdk/osx/2.1.4.GA/iphone/builder.py'
-alias abuilder='/Users/ut/Library/Application\ Support/Titanium/mobilesdk/osx/2.1.4.GA/android/builder.py'
 # javaの文字化けを回避
 export _JAVA_OPTIONS='-Dfile.encoding=UTF-8'
+
 # findの置換でエラーが出るので
 export LANG=C
+
 # 重複するコマンドを履歴に残さない
 export HISTCONTROL=ignoreboth:erasedups
+
 # よく使うコマンドは保存しない（:で区切る）
 export HISTIGNORE="ls*:pwd"
+
 # ヒストリのサイズを増やす
 export HISTSIZE=10000
-# lessの文字化け対策
-export LESSCHARSET=utf-8
-# adbコマンドを使うため、platform-toolsのディレクトリを指定
+
+# adbコマンド用に、platform-toolsのパスを通す
 export PATH=$PATH:/Applications/adt-bundle-mac-x86/sdk/platform-tools
-# .rbenv
+
+# rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-# なぜか日本語が化けるようになったので
-export LANG=ja_JP.UTF-8
-export LESSCHARSET=utf-8
-# homebrewのctagsを使うようにする
-alias ctags='/usr/local/bin/ctags'
 
-# ctrl+s をリセット
-stty stop undef
+# 日本語の文字化け対策
+export LANG=ja_JP.UTF-8
+
+# lessの文字化け対策
+export LESSCHARSET=utf-8
 
 # ターミナルで日本語入力を使用できるようにする
 set input-meta on 
 set output-meta on 
 set convert-meta off
+
+# homebrewの ctags を使うようにする
+alias ctags='/usr/local/bin/ctags'
+
+# i-search 用に ctrl+s をリセットする
+stty stop undef
