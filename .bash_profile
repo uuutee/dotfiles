@@ -30,3 +30,7 @@ alias ctags='/usr/local/bin/ctags'
 # ctrl+s をリセット
 stty stop undef
 
+# ターミナルで日本語入力を使用できるようにする
+set input-meta on 
+set output-meta on 
+set convert-meta off
