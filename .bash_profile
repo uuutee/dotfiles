@@ -1,3 +1,11 @@
+# debug
+echo 'start ~/.bash_profile'
+
+# bashrc を読み込み
+if [ -f ~/.bashrc ]; then
+	source ~/.bashrc
+fi
+
 # javaの文字化けを回避
 export _JAVA_OPTIONS='-Dfile.encoding=UTF-8'
 
@@ -5,7 +13,7 @@ export _JAVA_OPTIONS='-Dfile.encoding=UTF-8'
 export HISTCONTROL=ignoreboth:erasedups
 
 # よく使うコマンドは保存しない（:で区切る）
-export HISTIGNORE="ls*:pwd"
+export HISTIGNORE="pwd"
 
 # ヒストリのサイズを増やす
 export HISTSIZE=10000
@@ -16,6 +24,10 @@ export PATH="$PATH:/Applications/adt-bundle-mac-x86/sdk/platform-tools"
 # rbenv
 export PATH="$PATH:$HOME/.rbenv/bin"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# anyenv
+export PATH="$HOME/.anyenv/bin:$PATH"
+eval "$(anyenv init -)"
 
 # 日本語の文字化け対策
 export LANG=ja_JP.UTF-8
