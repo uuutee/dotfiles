@@ -26,8 +26,11 @@ export PATH="$PATH:$HOME/.rbenv/bin"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # anyenv
-export PATH="$HOME/.anyenv/bin:$PATH"
-eval "$(anyenv init -)"
+if [ -d "$HOME/.anyenv/" ]; then 
+	export PATH="$HOME/.anyenv/bin:$PATH"
+	eval "$(anyenv init -)"
+fi
+
 
 # 日本語の文字化け対策
 export LANG=ja_JP.UTF-8
