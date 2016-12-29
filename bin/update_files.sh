@@ -1,20 +1,35 @@
 #! /bin/bash
 
-FROM_DIR=~/Dropbox/dev/designinc/files/update/public_html/domain;
-TARGET_PATH=/cwp/wp-includes/class-phpmailer.php;
-PUBLIC_HTML_DIR=~/Dropbox/dev/designinc/files/test/public_html;
-BACKUP_DIR=~/Dropbox/dev/designinc/files/backup;
+# update_files.sh
+# 対象のディレクトリに一致したファイルが存在したら、バックアップを取得して、SRC_DIR内の同ファイルを上書きする
 
-for website in `ls -l ${PUBLIC_HTML_DIR} | grep ^drw | awk '{print $9}'`; do 
-	cd "${PUBLIC_HTML_DIR}/${website}"
+# テスト実行フラグ
+IS_DRYRUN=true
+# 置き換えるファイルのソースディレクトリ
+SRC_DIR=~/.update_files/src
+# 検索対象のディレクトリ
+SEARCH_DIR=~/public_html/
+# 置き換えるファイルの相対パスを配列で指定。（先頭と末尾のスラッシュは不要）
+TARGETS=('cwp/wp-includes/class-phpmailer.php' 'cwp/wp-includes/class-smtp.php')
+# バックアップディレクトリ
+TIME=`date +"%Y%m%d%H%M%S"`
+BACKUP_DIR=~/.update_files/backup/${TIME}
 
+for target in "${TARGETS[@]}"; do
 	# 対象ファイルが見つかれば、backupして、上書き
-	for file in `find ./ -path *${TARGET_PATH}`; do 
-		# backup
-		mkdir -p "${BACKUP_DIR}/${website}"
-		cp -p ${file} "${BACKUP_DIR}/${website}"
+	for file in `find ${SEARCH_DIR} -path *${target}`; do 
+		if ${IS_DRYRUN} ; then
+			# dryrun
+			echo "${file}"
+		else
+			# backup
+			TARGET_DIR_PATH=`dirname ${file}`
+			mkdir -p "${BACKUP_DIR}${TARGET_DIR_PATH}"
+			cp -rp ${file} "${BACKUP_DIR}/${TARGET_DIR_PATH}"
 
-		# 上書き
-		cp -f "${FROM_DIR}${TARGET_PATH}" ${file}
+			# 削除して上書き
+			rm -rf ${file} # ディレクトリの内容を置き換えない（ファイルを統合する）場合はrm不要
+			cp -rf "${SRC_DIR}/${target}" ${TARGET_DIR_PATH}
+		fi
 	done
 done
