@@ -49,6 +49,9 @@ alias subl="~/dotfiles/etc/scripts/subl.sh"
 # rperm
 alias rperm="~/dotfiles/etc/scripts/rperm.sh"
 
+# httpstat
+alias httpstat="~/dotfiles/etc/scripts/httpstat/httpstat.sh"
+
 # Finderで現在開いているディレクトリに移動
 cdf () {
 	target=`osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)'`
