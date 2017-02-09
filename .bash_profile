@@ -50,7 +50,7 @@ alias subl="~/dotfiles/etc/scripts/subl.sh"
 alias rperm="~/dotfiles/etc/scripts/rperm.sh"
 
 # httpstat
-alias httpstat="~/dotfiles/etc/scripts/httpstat/httpstat.sh"
+alias httpstat="~/dotfiles/etc/scripts/httpstat.sh"
 
 # Finderで現在開いているディレクトリに移動
 cdf () {

@@ -7,4 +7,4 @@ ln -s ~/dotfiles/.vimrc ~/.vimrc
 # scripts
 chmod +x ~/dotfiles/etc/scripts/subl.sh
 chmod +x ~/dotfiles/etc/scripts/rperm.sh
-chmod +x ~/dotfiles/etc/scripts/httpstat/httpstat.sh
+chmod +x ~/dotfiles/etc/scripts/httpstat.sh
