@@ -31,18 +31,23 @@ if [ -d "$HOME/.anyenv/" ]; then
 	eval "$(anyenv init -)"
 fi
 
-
 # 日本語の文字化け対策
 export LANG=ja_JP.UTF-8
 
 # lessの文字化け対策
 export LESSCHARSET=utf-8
 
+# i-search 用に ctrl+s をリセットする
+stty stop undef
+
 # homebrewの ctags を使うようにする
 alias ctags='/usr/local/bin/ctags'
 
-# i-search 用に ctrl+s をリセットする
-stty stop undef
+# subl
+alias subl="~/dotfiles/etc/scripts/subl.sh"
+
+# rperm
+alias rperm="~/dotfiles/etc/scripts/rperm.sh"
 
 # Finderで現在開いているディレクトリに移動
 cdf () {
