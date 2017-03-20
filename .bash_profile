@@ -44,16 +44,16 @@ stty stop undef
 alias ctags='/usr/local/bin/ctags'
 
 # subl
-alias subl="~/dotfiles/etc/scripts/subl.sh"
+alias subl="~/Dropbox/dev/src/github.com/uuutee/dotfiles/etc/scripts/subl.sh"
 
 # rperm
-alias rperm="~/dotfiles/etc/scripts/rperm.sh"
+alias rperm="~/Dropbox/dev/src/github.com/uuutee/dotfiles/etc/scripts/rperm.sh"
 
 # httpstat
-alias httpstat="~/dotfiles/etc/scripts/httpstat.sh"
+alias httpstat="~/Dropbox/dev/src/github.com/uuutee/dotfiles/etc/scripts/httpstat.sh"
 
 # ghq & hub
-alias g='cd $(ghq root)/$(ghq list | peco)'
+alias cdg='cd $(ghq root)/$(ghq list | peco)'
 alias gh='hub browse $(ghq list | peco | cut -d "/" -f 2,3)'
 
 # Finderで現在開いているディレクトリに移動
