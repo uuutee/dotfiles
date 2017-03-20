@@ -11,7 +11,7 @@ elif [ -e $1 ]; then
 # 存在しないファイルなら新規作成して開く
 else
 	while true; do
-		read -p 'file is not fount. do you make file? (y/n) ' yn
+		read -p 'file is not found do you make file? (y/n) ' yn
 		case $yn in
 			[Yy]* ) 
 				DIR=`dirname ${1}`;
