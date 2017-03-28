@@ -67,3 +67,6 @@ cdf () {
 		echo 'No Finder window found' >&2
 	fi
 }
+
+# bash_completion
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
