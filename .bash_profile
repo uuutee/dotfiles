@@ -70,3 +70,23 @@ cdf () {
 
 # bash_completion
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+
+# enhancd
+ENHANCD_HYPHEN_ARG="-ls"
+ENHANCD_DOT_ARG="-up"
+source ~/Dropbox/dev/src/github.com/b4b4r07/enhancd/init.sh
+
+# search history
+peco-select-history() {
+    local tac
+    if which tac > /dev/null; then
+        tac="tac"
+    else
+        tac="tail -r"
+    fi
+    local l=$(\history | awk '{$1="";print}' | eval $tac | peco | cut -d' ' -f4-)
+    READLINE_LINE="${l}"
+    READLINE_POINT=${#l}
+}
+bind -x '"\C-r": peco-select-history'
+
