@@ -18,7 +18,7 @@ export HISTIGNORE="pwd:cdf:cdg"
 # ヒストリのサイズを増やす
 export HISTSIZE=10000
 
-# adbコマンド用に、platform-toolsのパスを通す
+# adbコマンド用
 export PATH="$PATH:/Applications/adt-bundle-mac-x86/sdk/platform-tools"
 
 # rbenv
@@ -78,8 +78,23 @@ source ~/Dropbox/dev/src/github.com/b4b4r07/enhancd/init.sh
 
 # search history
 peco-select-history() {
-  local l=$(history | tail -r | sed -e 's/^\ *[0-9]*\ *//' | peco)
+  local l=$(\history | tail -r | sed -e 's/^\ *[0-9]*\ *//' | peco)
   READLINE_LINE="${l}"
   READLINE_POINT=${#l}
 }
 bind -x '"\C-r": peco-select-history'
+
+# search current directory
+peco-find() {
+  local l=$(\find . -maxdepth 8 -a \! -regex '.*/\..*' | peco)
+  READLINE_LINE="${READLINE_LINE:0:$READLINE_POINT}${l}${READLINE_LINE:$READLINE_POINT}"
+  READLINE_POINT=$(($READLINE_POINT + ${#l}))
+}
+bind -x '"\C-uc": peco-find'
+
+function peco-find-all() {
+  local l=$(\find . -maxdepth 8 | peco)
+  READLINE_LINE="${READLINE_LINE:0:$READLINE_POINT}${l}${READLINE_LINE:$READLINE_POINT}"
+  READLINE_POINT=$(($READLINE_POINT + ${#l}))
+}
+bind -x '"\C-ua": peco-find-all'
