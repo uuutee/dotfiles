@@ -13,7 +13,7 @@ export _JAVA_OPTIONS='-Dfile.encoding=UTF-8'
 export HISTCONTROL=ignoreboth:erasedups
 
 # よく使うコマンドは保存しない（:で区切る）
-export HISTIGNORE="pwd"
+export HISTIGNORE="pwd:cdf:cdg"
 
 # ヒストリのサイズを増やす
 export HISTSIZE=10000
@@ -78,15 +78,8 @@ source ~/Dropbox/dev/src/github.com/b4b4r07/enhancd/init.sh
 
 # search history
 peco-select-history() {
-    local tac
-    if which tac > /dev/null; then
-        tac="tac"
-    else
-        tac="tail -r"
-    fi
-    local l=$(\history | awk '{$1="";print}' | eval $tac | peco | cut -d' ' -f4-)
-    READLINE_LINE="${l}"
-    READLINE_POINT=${#l}
+  local l=$(history | tail -r | sed -e 's/^\ *[0-9]*\ *//' | peco)
+  READLINE_LINE="${l}"
+  READLINE_POINT=${#l}
 }
 bind -x '"\C-r": peco-select-history'
-
