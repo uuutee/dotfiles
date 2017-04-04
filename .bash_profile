@@ -37,6 +37,10 @@ export LANG=ja_JP.UTF-8
 # lessの文字化け対策
 export LESSCHARSET=utf-8
 
+# source-highlight で lessをハイライトする
+export LESS='-R'
+export LESSOPEN='| /usr/local//Cellar/source-highlight/3.1.8_4/bin/src-hilite-lesspipe.sh %s'
+
 # i-search 用に ctrl+s をリセットする
 stty stop undef
 
