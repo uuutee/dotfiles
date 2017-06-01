@@ -1,6 +1,3 @@
-# debug
-echo 'start ~/.bash_profile'
-
 # bashrc を読み込み
 if [ -f ~/.bashrc ]; then
 	source ~/.bashrc
