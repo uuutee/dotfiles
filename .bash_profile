@@ -102,3 +102,9 @@ function peco-find-all() {
   READLINE_POINT=$(($READLINE_POINT + ${#l}))
 }
 bind -x '"\C-ua": peco-find-all'
+
+# node のrequire先にnpm -gのパスを追加する
+export NODE_PATH=`npm root -g`
+
+# python 2.7 用にパスを通す
+export PATH="$PATH:~/Library/Python/2.7/bin/"
