@@ -71,7 +71,7 @@ stty stop undef
 # enhancd
 ENHANCD_HYPHEN_ARG="-ls"
 ENHANCD_DOT_ARG="-up"
-source ~/Dropbox/dev/src/github.com/b4b4r07/enhancd/init.sh
+source ~/.ghq/github.com/b4b4r07/enhancd/init.sh
 
 # awsコマンドを補完する
 complete -C '~/Library/Python/2.7/bin/aws_completer' aws
@@ -86,13 +86,16 @@ complete -C '~/Library/Python/2.7/bin/aws_completer' aws
 alias ctags='/usr/local/bin/ctags'
 
 # subl
-alias subl="~/Dropbox/dev/src/github.com/uuutee/dotfiles/etc/scripts/subl.sh"
+alias subl="~/.ghq/github.com/uuutee/dotfiles/etc/scripts/subl.sh"
 
 # rperm
-alias rperm="~/Dropbox/dev/src/github.com/uuutee/dotfiles/etc/scripts/rperm.sh"
+alias rperm="~/.ghq/github.com/uuutee/dotfiles/etc/scripts/rperm.sh"
 
 # httpstat
-alias httpstat="~/Dropbox/dev/src/github.com/uuutee/dotfiles/etc/scripts/httpstat.sh"
+alias httpstat="~/.ghq/github.com/uuutee/dotfiles/etc/scripts/httpstat.sh"
+
+# convertall
+alias convertall="~/.ghq/github.com/uuutee/dotfiles/etc/scripts/convertall.sh"
 
 # ghq & hub
 alias cdg='cd $(ghq root)/$(ghq list | peco)'
