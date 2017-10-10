@@ -106,6 +106,9 @@ if [[ -x $(which colordiff) ]]; then
   alias diff='colordiff'
 fi
 
+# profileのリロード
+alias reload="exec $SHELL -l"
+
 # Finderで現在開いているディレクトリに移動
 function cdf() {
   target=$(osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)')
@@ -143,4 +146,9 @@ bind -x '"\C-ua": peco-find-all'
 # peco-ssh
 function s() {
   ssh $(grep -iE "^host[[:space:]]+[^*]" ~/.ssh/config | peco | awk "{print \$2}")
+}
+
+# パスワードを生成
+function pw() {
+  pwgen -s 12 | awk '{print $0}' | pbcopy && pbpaste
 }
