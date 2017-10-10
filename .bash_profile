@@ -23,14 +23,18 @@ export _JAVA_OPTIONS='-Dfile.encoding=UTF-8'
 # adbコマンド用
 export PATH="$PATH:/Applications/adt-bundle-mac-x86/sdk/platform-tools"
 
-# rbenv
-export PATH="$PATH:$HOME/.rbenv/bin"
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
 # anyenv
-if [ -d "$HOME/.anyenv/" ]; then 
+if [[ -d "$HOME/.anyenv" ]]; then
   export PATH="$HOME/.anyenv/bin:$PATH"
   eval "$(anyenv init -)"
+fi
+
+# laravel
+if [[ -x $(which phpenv) ]]; then
+  PHPENV_LARAVEL_BIN_PATH=$(phpenv which laravel)
+  if [[ -e $(dirname ${PHPENV_LARAVEL_BIN_PATH}) ]]; then
+    PATH="$PATH:${PHPENV_LARAVEL_BIN_PATH}"
+  fi
 fi
 
 # 日本語の文字化け対策
