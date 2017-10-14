@@ -50,9 +50,6 @@ export LESSOPEN='| /usr/local/Cellar/source-highlight/3.1.8_4/bin/src-hilite-les
 # node のrequire先にnpm -gのパスを追加する
 export NODE_PATH=$(npm root -g)
 
-# python 2.7 用にパスを通す
-export PATH="$PATH:~/Library/Python/2.7/bin/"
-
 # Go Lang用パス
 export GOPATH="$HOME/.go/"
 
