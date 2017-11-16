@@ -56,6 +56,9 @@ export GOPATH="$HOME/.go/"
 # i-search 用に ctrl+s をリセットする
 stty stop undef
 
+# ~/ansible.cfg が反映されないので一応設定する
+export ANSIBLE_CONFIG=~/ansible.cfg
+
 
 
 ####################################
