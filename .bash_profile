@@ -98,7 +98,10 @@ alias rperm="~/.ghq/github.com/uuutee/dotfiles/etc/scripts/rperm.sh"
 alias httpstat="~/.ghq/github.com/uuutee/dotfiles/etc/scripts/httpstat.sh"
 
 # convertall
-alias convertall="~/.ghq/github.com/uuutee/dotfiles/etc/scripts/convertall.sh"
+alias convert-all="~/.ghq/github.com/uuutee/dotfiles/etc/scripts/convertall.sh"
+
+# png画像を圧縮する
+alias pngquant-all='find . -name "*.png" | xargs pngquant --ext .png --speed 1 --force'
 
 # ghq & hub
 alias cdg='cd $(ghq root)/$(ghq list | peco)'
