@@ -82,6 +82,9 @@ complete -C '~/Library/Python/2.7/bin/aws_completer' aws
 #         alias & function 
 ####################################
 
+# ls -al
+alias ll='ls -al'
+
 # homebrewの ctags を使うようにする
 alias ctags='/usr/local/bin/ctags'
 
