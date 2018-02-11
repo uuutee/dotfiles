@@ -53,11 +53,17 @@ export NODE_PATH=$(npm root -g)
 # Go Lang用パス
 export GOPATH="$HOME/.go/"
 
-# i-search 用に ctrl+s をリセットする
-stty stop undef
-
 # ~/ansible.cfg が反映されないので一応設定する
 export ANSIBLE_CONFIG=~/ansible.cfg
+
+# gettext
+export PATH=/usr/local/opt/gettext/bin:$PATH
+
+# homebrewのopensslを使用する
+export PATH=/usr/local/opt/openssl/bin:$PATH
+
+# i-search 用に ctrl+s をリセットする
+stty stop undef
 
 
 
@@ -114,6 +120,18 @@ fi
 
 # profileのリロード
 alias reload="exec $SHELL -l"
+
+# 自身のグローバルIP
+alias ip='curl -s httpbin.org/ip | jq -r .origin'
+
+# Docker: すべてのコンテナを削除
+alias docker-rm-all='docker rm -f $(docker ps -a -q)'
+
+
+
+####################################
+#           functions
+####################################
 
 # Finderで現在開いているディレクトリに移動
 function cdf() {
