@@ -1,0 +1,8 @@
+# local
+.DS_Store
+sftp-config.json
+.ftpconfig
+.idea/
+
+# node.js
+/node_modules/

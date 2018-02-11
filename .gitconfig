@@ -1,0 +1,7 @@
+[user]
+	name = uuutee
+	email = uuuteenet@gmail.com
+[ghq]
+	root = ~/.ghq
+[core]
+	excludesfile = ~/.gitignore_global
