@@ -79,7 +79,7 @@ complete -C '~/Library/Python/2.7/bin/aws_completer' aws
 
 
 ####################################
-#         alias & function 
+#             alias
 ####################################
 
 # ls -al
@@ -97,11 +97,11 @@ alias rperm="~/.ghq/github.com/uuutee/dotfiles/etc/scripts/rperm.sh"
 # httpstat
 alias httpstat="~/.ghq/github.com/uuutee/dotfiles/etc/scripts/httpstat.sh"
 
-# convertall
-alias convert-all="~/.ghq/github.com/uuutee/dotfiles/etc/scripts/convertall.sh"
+# convert-all
+alias convert-all="~/.ghq/github.com/uuutee/dotfiles/etc/scripts/convert-all.sh"
 
 # png画像を圧縮する
-alias pngquant-all='find . -name "*.png" | xargs pngquant --ext .png --speed 1 --force'
+alias pngquant-all="~/.ghq/github.com/uuutee/dotfiles/etc/scripts/pngquant-all.sh"
 
 # ghq & hub
 alias cdg='cd $(ghq root)/$(ghq list | peco)'
