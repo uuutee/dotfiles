@@ -122,7 +122,7 @@ fi
 alias reload="exec $SHELL -l"
 
 # 自身のグローバルIP
-alias ip='curl -s httpbin.org/ip | jq -r .origin'
+alias myip='curl -s httpbin.org/ip | jq -r .origin'
 
 # Docker: すべてのコンテナを削除
 alias docker-rm-all='docker rm -f $(docker ps -a -q)'
