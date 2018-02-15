@@ -1,8 +1,9 @@
 #! /bin/bash
-ln -s ~/.ghq/github.com/uuutee/dotfiles/.bash_profile ~/.bash_profile
-ln -s ~/.ghq/github.com/uuutee/dotfiles/.bashrc ~/.bashrc
-ln -s ~/.ghq/github.com/uuutee/dotfiles/.vim ~/.vim
-ln -s ~/.ghq/github.com/uuutee/dotfiles/.vimrc ~/.vimrc
-ln -s ~/.ghq/github.com/uuutee/dotfiles/.gitconfig ~/.gitconfig
-ln -s ~/.ghq/github.com/uuutee/dotfiles/.gitignore_global ~/.gitignore_global
-ln -s ~/.ghq/github.com/uuutee/atom/ ~/.atom
+SCRIPT_DIR=$(cd $(dirname $0) && pwd)
+
+ln -s ${SCRIPT_DIR}/.bash_profile ~/.bash_profile
+ln -s ${SCRIPT_DIR}/.bashrc ~/.bashrc
+ln -s ${SCRIPT_DIR}/.vim ~/.vim
+ln -s ${SCRIPT_DIR}/.vimrc ~/.vimrc
+ln -s ${SCRIPT_DIR}/.gitconfig ~/.gitconfig
+ln -s ${SCRIPT_DIR}/.gitignore_global ~/.gitignore_global

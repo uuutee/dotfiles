@@ -8,6 +8,9 @@ fi
 #           環境変数
 ####################################
 
+# dotfiles
+export DOTFILES_DIR=~/.ghq/github.com/uuutee/dotfiles
+
 # 重複するコマンドを履歴に残さない
 export HISTCONTROL=ignoredups:erasedups
 
@@ -95,19 +98,19 @@ alias ll='ls -al'
 alias ctags='/usr/local/bin/ctags'
 
 # subl
-alias subl="~/.ghq/github.com/uuutee/dotfiles/etc/scripts/subl.sh"
+alias subl="${DOTFILES_DIR}/utility/subl.sh"
 
 # rperm
-alias rperm="~/.ghq/github.com/uuutee/dotfiles/etc/scripts/rperm.sh"
+alias rperm="${DOTFILES_DIR}/utility/rperm.sh"
 
 # httpstat
-alias httpstat="~/.ghq/github.com/uuutee/dotfiles/etc/scripts/httpstat.sh"
+alias httpstat="${DOTFILES_DIR}/utility/httpstat.sh"
 
 # convert-all
-alias convert-all="~/.ghq/github.com/uuutee/dotfiles/etc/scripts/convert-all.sh"
+alias convert-all="${DOTFILES_DIR}/utility/convert-all.sh"
 
 # png画像を圧縮する
-alias pngquant-all="~/.ghq/github.com/uuutee/dotfiles/etc/scripts/pngquant-all.sh"
+alias pngquant-all="${DOTFILES_DIR}/utility/pngquant-all.sh"
 
 # ghq & hub
 alias cdg='cd $(ghq root)/$(ghq list | peco)'
