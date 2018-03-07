@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /usr/bin/env bash
 
 # rperm.sh
 # 再帰的に親のパーミッションを表示する

@@ -5,25 +5,16 @@ fi
 
 
 ####################################
-#           環境変数
+#             PATH 
 ####################################
 
 # dotfiles
 export DOTFILES_DIR=~/.ghq/github.com/uuutee/dotfiles
 
-# 重複するコマンドを履歴に残さない
-export HISTCONTROL=ignoredups:erasedups
+# dotfiles/bin
+export PATH="$PATH:$DOTFILES_DIR/bin"
 
-# よく使うコマンドは保存しない（:で区切る）
-export HISTIGNORE="pwd:cdf:cdg"
-
-# ヒストリのサイズを増やす
-export HISTSIZE=10000
-
-# javaの文字化けを回避
-export _JAVA_OPTIONS='-Dfile.encoding=UTF-8'
-
-# adbコマンド用
+# adb
 export PATH="$PATH:/Applications/adt-bundle-mac-x86/sdk/platform-tools"
 
 # anyenv
@@ -40,6 +31,39 @@ if [[ -x $(which phpenv) ]]; then
   fi
 fi
 
+# gettext
+export PATH=/usr/local/opt/gettext/bin:$PATH
+
+# homebrewのopensslを使用する
+export PATH=/usr/local/opt/openssl/bin:$PATH
+
+# bison
+export PATH=/usr/local/opt/bison@2.7/bin:$PATH
+
+# node のrequire先にnpm -gのパスを追加する
+export NODE_PATH=$(npm root -g)
+
+# Go Lang用パス
+export GOPATH="$HOME/.go/"
+
+
+
+####################################
+#           環境変数
+####################################
+
+# 重複するコマンドを履歴に残さない
+export HISTCONTROL=ignoredups:erasedups
+
+# よく使うコマンドは保存しない（:で区切る）
+export HISTIGNORE="pwd:cdf:cdg"
+
+# ヒストリのサイズを増やす
+export HISTSIZE=10000
+
+# javaの文字化けを回避
+export _JAVA_OPTIONS='-Dfile.encoding=UTF-8'
+
 # 日本語の文字化け対策
 export LANG=ja_JP.UTF-8
 
@@ -50,20 +74,8 @@ export LESSCHARSET=utf-8
 export LESS='-R'
 export LESSOPEN='| /usr/local/Cellar/source-highlight/3.1.8_4/bin/src-hilite-lesspipe.sh %s'
 
-# node のrequire先にnpm -gのパスを追加する
-export NODE_PATH=$(npm root -g)
-
-# Go Lang用パス
-export GOPATH="$HOME/.go/"
-
-# ~/ansible.cfg が反映されないので一応設定する
+# ~/ansible.cfg が反映されないので応設定する
 export ANSIBLE_CONFIG=~/ansible.cfg
-
-# gettext
-export PATH=/usr/local/opt/gettext/bin:$PATH
-
-# homebrewのopensslを使用する
-export PATH=/usr/local/opt/openssl/bin:$PATH
 
 # i-search 用に ctrl+s をリセットする
 stty stop undef
@@ -83,7 +95,7 @@ ENHANCD_DOT_ARG="-up"
 source ~/.ghq/github.com/b4b4r07/enhancd/init.sh
 
 # awsコマンドを補完する
-complete -C '~/Library/Python/2.7/bin/aws_completer' aws
+complete -C '/usr/local/bin/aws_completer' aws
 
 
 
@@ -96,21 +108,6 @@ alias ll='ls -al'
 
 # homebrewの ctags を使うようにする
 alias ctags='/usr/local/bin/ctags'
-
-# subl
-alias subl="${DOTFILES_DIR}/utility/subl.sh"
-
-# rperm
-alias rperm="${DOTFILES_DIR}/utility/rperm.sh"
-
-# httpstat
-alias httpstat="${DOTFILES_DIR}/utility/httpstat.sh"
-
-# convert-all
-alias convert-all="${DOTFILES_DIR}/utility/convert-all.sh"
-
-# png画像を圧縮する
-alias pngquant-all="${DOTFILES_DIR}/utility/pngquant-all.sh"
 
 # ghq & hub
 alias cdg='cd $(ghq root)/$(ghq list | peco)'

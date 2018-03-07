@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /usr/bin/env bash
 
 # ディレクトリにマッチしたら終了
 if [[ $1 =~ /$ ]]; then

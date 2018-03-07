@@ -1,4 +1,5 @@
-#!/bin/bash
+#! /usr/bin/env bash
+
 unit=$(echo $1 | cut -b ${#1})
 string=$(echo $1 | cut -b 1-$((${#1}-1)))
 

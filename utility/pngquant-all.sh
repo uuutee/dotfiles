@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /usr/bin/env bash
 
 # 引数を省略したら現在のディレクトリをセット
 # -n Nonzero length。空文字としての入力が必要なので、 "" は必要

@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /usr/bin/env bash
 
 # update_files.sh
 # 対象のディレクトリに一致したファイルが存在したら、バックアップを取得して、SRC_DIR内の同ファイルを上書きする
