@@ -6,3 +6,7 @@ sftp-config.json
 
 # node.js
 /node_modules/
+
+# ansible
+*.retry
+

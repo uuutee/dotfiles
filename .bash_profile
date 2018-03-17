@@ -114,6 +114,15 @@ alias ll='ls -al'
 # homebrewの ctags を使うようにする
 alias ctags='/usr/local/bin/ctags'
 
+# git
+alias gs='git status'
+alias ga='git add'
+alias gaa='git add -A'
+alias gap='git add -p'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gca='git commit --amend --no-edit'
+
 # ghq & hub
 alias cdg='cd $(ghq root)/$(ghq list | peco)'
 alias gh='hub browse $(ghq list | peco | cut -d "/" -f 2,3)'

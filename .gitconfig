@@ -5,3 +5,15 @@
 	root = ~/.ghq
 [core]
 	excludesfile = ~/.gitignore_global
+[alias]
+	alias = !git config --get-regexp '^alias\\.' | sed 's/alias\\.\\([^ ]*\\) \\(.*\\)/\\1\\\t => \\2/' | sort
+	s  = status
+	ss = status -s
+	sh = show
+	a = add
+	aa = add -A
+	ap = add -p
+	c = commit
+	cm = commit -m
+	cam = commit --amend
+	camn = commit --amend --no-edit
