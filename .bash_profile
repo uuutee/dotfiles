@@ -31,6 +31,11 @@ if [[ -x $(which phpenv) ]]; then
   fi
 fi
 
+# composer
+if [[ -x $(which composer) ]]; then
+  PATH="$PATH:$HOME/.composer/vendor/bin"
+fi
+
 # gettext
 export PATH=/usr/local/opt/gettext/bin:$PATH
 
