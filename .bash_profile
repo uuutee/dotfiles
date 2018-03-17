@@ -77,7 +77,7 @@ export LESSCHARSET=utf-8
 
 # source-highlight で lessをハイライトする
 export LESS='-R'
-export LESSOPEN='| /usr/local/Cellar/source-highlight/3.1.8_4/bin/src-hilite-lesspipe.sh %s'
+export LESSOPEN='| /usr/local/Cellar/source-highlight/3.1.8_8/bin/src-hilite-lesspipe.sh %s'
 
 # ~/ansible.cfg が反映されないので応設定する
 export ANSIBLE_CONFIG=~/ansible.cfg
