@@ -1,9 +1,0 @@
-#! /usr/bin/env node
-
-const stdin = require('fs').readFileSync('/dev/stdin', 'utf8')
-
-// 改行brに変換
-let text = stdin.replace(/[\n\r]/g, '<br />\n');
-text = '<p>\n' + text + '\n</p>';
-
-console.log(text)
