@@ -23,14 +23,6 @@ if [[ -d "$HOME/.anyenv" ]]; then
   eval "$(anyenv init -)"
 fi
 
-# laravel
-if [[ -x $(which phpenv) ]]; then
-  PHPENV_LARAVEL_BIN_PATH=$(phpenv which laravel)
-  if [[ -e $(dirname ${PHPENV_LARAVEL_BIN_PATH}) ]]; then
-    PATH="$PATH:${PHPENV_LARAVEL_BIN_PATH}"
-  fi
-fi
-
 # composer
 if [[ -x $(which composer) ]]; then
   PATH="$PATH:$HOME/.composer/vendor/bin"
