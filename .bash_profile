@@ -154,6 +154,22 @@ function cdf() {
   fi
 }
 
+# peco-ssh
+function s() {
+  ssh $(grep -iE "^host[[:space:]]+[^*]" ~/.ssh/config | peco | awk "{print \$2}")
+}
+
+# パスワードを生成
+function pw() {
+  pwgen -s 12 | awk '{print $0}' | pbcopy && pbpaste
+}
+
+
+
+####################################
+#              bind
+####################################
+
 # search history
 function peco-select-history() {
   local l=$(\history | tail -r | sed -e 's/^\ *[0-9]*\ *//' | peco)
@@ -170,12 +186,3 @@ function peco-find() {
 }
 bind -x '"\C-uc": peco-find'
 
-# peco-ssh
-function s() {
-  ssh $(grep -iE "^host[[:space:]]+[^*]" ~/.ssh/config | peco | awk "{print \$2}")
-}
-
-# パスワードを生成
-function pw() {
-  pwgen -s 12 | awk '{print $0}' | pbcopy && pbpaste
-}
