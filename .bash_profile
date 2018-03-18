@@ -107,6 +107,7 @@ alias ll='ls -al'
 alias ctags='/usr/local/bin/ctags'
 
 # git
+alias g='git'
 alias gs='git status'
 alias ga='git add'
 alias gaa='git add -A'
@@ -132,6 +133,9 @@ alias myip='curl -s httpbin.org/ip | jq -r .origin'
 
 # Docker: すべてのコンテナを削除
 alias docker-rm-all='docker rm -f $(docker ps -a -q)'
+
+# ansible-playbook
+alias ap='ansible-playbook'
 
 
 
