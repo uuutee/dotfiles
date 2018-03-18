@@ -164,18 +164,11 @@ bind -x '"\C-r": peco-select-history'
 
 # search current directory
 function peco-find() {
-  local l=$(\find . -maxdepth 8 -a \! -regex '.*/\..*' | peco)
-  READLINE_LINE="${READLINE_LINE:0:$READLINE_POINT}${l}${READLINE_LINE:$READLINE_POINT}"
-  READLINE_POINT=$(($READLINE_POINT + ${#l}))
-}
-bind -x '"\C-uc": peco-find'
-
-function peco-find-all() {
   local l=$(\find . -maxdepth 8 | peco)
   READLINE_LINE="${READLINE_LINE:0:$READLINE_POINT}${l}${READLINE_LINE:$READLINE_POINT}"
   READLINE_POINT=$(($READLINE_POINT + ${#l}))
 }
-bind -x '"\C-ua": peco-find-all'
+bind -x '"\C-uc": peco-find'
 
 # peco-ssh
 function s() {
