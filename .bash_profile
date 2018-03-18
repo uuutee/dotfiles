@@ -126,7 +126,7 @@ if [[ -x $(which colordiff) ]]; then
 fi
 
 # profileのリロード
-alias reload="exec $SHELL -l"
+alias r="exec $SHELL -l"
 
 # 自身のグローバルIP
 alias myip='curl -s httpbin.org/ip | jq -r .origin'
@@ -164,25 +164,55 @@ function pw() {
   pwgen -s 12 | awk '{print $0}' | pbcopy && pbpaste
 }
 
+# find with peco
+function fp() {
+  if [ -n "${1}" ]; then
+    local path=${1}
+  else
+    local path=.
+  fi
+
+  find ${path} -maxdepth 8 -a ! -regex '.*/\..*' | peco
+}
+
+# find all with peco
+function fpa() {
+  if [ -n "${1}" ]; then
+    local path=${1}
+  else
+    local path=.
+  fi
+
+  find ${path} -maxdepth 8 | peco
+}
+
 
 
 ####################################
-#              bind
+#           key bind
 ####################################
 
 # search history
-function peco-select-history() {
+function _peco-select-history() {
   local l=$(\history | tail -r | sed -e 's/^\ *[0-9]*\ *//' | peco)
   READLINE_LINE="${l}"
   READLINE_POINT=${#l}
 }
-bind -x '"\C-r": peco-select-history'
+bind -x '"\C-r": _peco-select-history'
 
 # search current directory
-function peco-find() {
+function _peco-find() {
+  local l=$(\find . -maxdepth 8 -a \! -regex '.*/\..*' | peco)
+  READLINE_LINE="${READLINE_LINE:0:$READLINE_POINT}${l}${READLINE_LINE:$READLINE_POINT}"
+  READLINE_POINT=$(($READLINE_POINT + ${#l}))
+}
+bind -x '"\C-uc": _peco-find'
+
+# search all current directory
+function _peco-find-all() {
   local l=$(\find . -maxdepth 8 | peco)
   READLINE_LINE="${READLINE_LINE:0:$READLINE_POINT}${l}${READLINE_LINE:$READLINE_POINT}"
   READLINE_POINT=$(($READLINE_POINT + ${#l}))
 }
-bind -x '"\C-uc": peco-find'
+bind -x '"\C-uca": _peco-find-all'
 
