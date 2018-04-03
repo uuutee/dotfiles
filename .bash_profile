@@ -126,7 +126,7 @@ if [[ -x $(which colordiff) ]]; then
 fi
 
 # profileのリロード
-alias r="exec $SHELL -l"
+alias reload="exec $SHELL -l"
 
 # 自身のグローバルIP
 alias myip='curl -s httpbin.org/ip | jq -r .origin'
@@ -186,7 +186,10 @@ function fpa() {
   find ${path} -maxdepth 8 | peco
 }
 
-
+# docker-tag-list
+function docker-tag-list() {
+  curl -s https://registry.hub.docker.com/v1/repositories/${1}/tags | jq -r .[].name
+}
 
 ####################################
 #           key bind
