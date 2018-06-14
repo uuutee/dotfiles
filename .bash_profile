@@ -8,8 +8,14 @@ fi
 #             PATH 
 ####################################
 
+# GOPATH
+export GOPATH=$HOME
+
+# src
+export SRC_DIR=~/src
+
 # dotfiles
-export DOTFILES_DIR=~/.ghq/github.com/uuutee/dotfiles
+export DOTFILES_DIR="$SRC_DIR/github.com/uuutee/dotfiles"
 
 # dotfiles/bin
 export PATH="$PATH:$DOTFILES_DIR/bin"
@@ -39,9 +45,6 @@ export PATH=/usr/local/opt/bison@2.7/bin:$PATH
 
 # node のrequire先にnpm -gのパスを追加する
 export NODE_PATH=$(npm root -g)
-
-# Go Lang用パス
-export GOPATH="$HOME/.go/"
 
 
 
@@ -89,7 +92,7 @@ stty stop undef
 # enhancd
 ENHANCD_HYPHEN_ARG="-ls"
 ENHANCD_DOT_ARG="-up"
-source ~/.ghq/github.com/b4b4r07/enhancd/init.sh
+source "$SRC_DIR/github.com/b4b4r07/enhancd/init.sh"
 
 # awsコマンドを補完する
 complete -C '/usr/local/bin/aws_completer' aws

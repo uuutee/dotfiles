@@ -2,7 +2,7 @@
 	name = uuutee
 	email = uuuteenet@gmail.com
 [ghq]
-	root = ~/.ghq
+	root = ~/src
 [core]
 	excludesfile = ~/.gitignore_global
 [alias]
