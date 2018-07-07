@@ -5,11 +5,14 @@ fi
 
 
 ####################################
-#             PATH 
+#        環境変数 & PATH 
 ####################################
 
-# GOPATH
+###### PATH ######
+
+# GO
 export GOPATH=$HOME
+export PATH=$PATH:$GOPATH/bin
 
 # src
 export SRC_DIR=~/src
@@ -31,7 +34,7 @@ fi
 
 # composer
 if [[ -x $(which composer) ]]; then
-  PATH="$PATH:$HOME/.composer/vendor/bin"
+  export PATH="$PATH:$HOME/.composer/vendor/bin"
 fi
 
 # gettext
@@ -47,10 +50,7 @@ export PATH=/usr/local/opt/bison@2.7/bin:$PATH
 export NODE_PATH=$(npm root -g)
 
 
-
-####################################
-#           環境変数
-####################################
+###### ENV ######
 
 # 重複するコマンドを履歴に残さない
 export HISTCONTROL=ignoredups:erasedups
@@ -194,6 +194,8 @@ function docker-tag-list() {
   curl -s https://registry.hub.docker.com/v1/repositories/${1}/tags | jq -r .[].name
 }
 
+
+
 ####################################
 #           key bind
 ####################################
@@ -222,3 +224,11 @@ function _peco-find-all() {
 }
 bind -x '"\C-uca": _peco-find-all'
 
+
+####################################
+#           other
+####################################
+
+# direnv
+export EDITOR="vim"
+eval "$(direnv hook bash)"
