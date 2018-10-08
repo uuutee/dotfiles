@@ -8,6 +8,9 @@ ln -sf ${SCRIPT_DIR}/.vimrc $HOME/.vimrc
 ln -sf ${SCRIPT_DIR}/.gitconfig $HOME/.gitconfig
 ln -sf ${SCRIPT_DIR}/.gitignore_global $HOME/.gitignore_global
 
+# molokai.vim
+(cd ${SCRIPT_DIR}; git submodule update --init)
+
 # vscode
 if [[ -e "$HOME/Library/Application Support/Code/User/" ]]; then
     ln -sf ${SCRIPT_DIR}/vscode/keybindings.json "$HOME/Library/Application Support/Code/User/keybindings.json"
