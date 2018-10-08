@@ -15,7 +15,7 @@ export GOPATH=$HOME
 export PATH=$PATH:$GOPATH/bin
 
 # src
-export SRC_DIR=~/src
+export SRC_DIR=$HOME/src
 
 # dotfiles
 export DOTFILES_DIR="$SRC_DIR/github.com/uuutee/dotfiles"
@@ -93,7 +93,7 @@ export LESS='-R'
 export LESSOPEN='| /usr/local/Cellar/source-highlight/3.1.8_8/bin/src-hilite-lesspipe.sh %s'
 
 # ~/ansible.cfg が反映されないので設定する
-export ANSIBLE_CONFIG=~/ansible.cfg
+export ANSIBLE_CONFIG=$HOME/ansible.cfg
 
 # i-search 用に ctrl+s をリセットする
 stty stop undef
@@ -175,7 +175,7 @@ function cdf() {
 
 # peco-ssh
 function s() {
-  ssh $(grep -iE "^host[[:space:]]+[^*]" ~/.ssh/config | peco | awk "{print \$2}")
+  ssh $(grep -iE "^host[[:space:]]+[^*]" $HOME/.ssh/config | peco | awk "{print \$2}")
 }
 
 # パスワードを生成
