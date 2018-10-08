@@ -231,9 +231,12 @@ export EDITOR="vim"
 eval "$(direnv hook bash)"
 
 # rbenv
-eval "$(rbenv init -)"
+if [[ -d "$HOME/.rbenv" ]]; then
+  eval "$(rbenv init -)"
+fi
 
 # ndenv
-export PATH="$HOME/.ndenv/bin:$PATH"
-eval "$(ndenv init -)"
-
+if [[ -d "$HOME/.ndenv" ]]; then
+  export PATH="$HOME/.ndenv/bin:$PATH"
+  eval "$(ndenv init -)"
+fi
