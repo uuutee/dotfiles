@@ -222,11 +222,20 @@ function _peco-find-all() {
 }
 bind -x '"\C-uca": _peco-find-all'
 
-
 ####################################
 #           other
 ####################################
 
 # direnv
 export EDITOR="vim"
+
+# rbenv
+eval "$(rbenv init -)"
+
+# ndenv
+export PATH="$HOME/.ndenv/bin:$PATH"
+eval "$(ndenv init -)"
+
+# direnv
 eval "$(direnv hook bash)"
+
