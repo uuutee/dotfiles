@@ -228,6 +228,7 @@ bind -x '"\C-uca": _peco-find-all'
 
 # direnv
 export EDITOR="vim"
+eval "$(direnv hook bash)"
 
 # rbenv
 eval "$(rbenv init -)"
@@ -235,7 +236,4 @@ eval "$(rbenv init -)"
 # ndenv
 export PATH="$HOME/.ndenv/bin:$PATH"
 eval "$(ndenv init -)"
-
-# direnv
-eval "$(direnv hook bash)"
 
