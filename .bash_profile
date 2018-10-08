@@ -32,10 +32,25 @@ if [[ -d "$HOME/.anyenv" ]]; then
   eval "$(anyenv init -)"
 fi
 
+# rbenv
+if [[ -d "$HOME/.rbenv" ]]; then
+  eval "$(rbenv init -)"
+fi
+
+# ndenv
+if [[ -d "$HOME/.ndenv" ]]; then
+  export PATH="$HOME/.ndenv/bin:$PATH"
+  eval "$(ndenv init -)"
+fi
+
 # composer
 if [[ -x $(which composer) ]]; then
   export PATH="$PATH:$HOME/.composer/vendor/bin"
 fi
+
+# direnv
+export EDITOR="vim"
+eval "$(direnv hook bash)"
 
 # gettext
 export PATH=/usr/local/opt/gettext/bin:$PATH
@@ -225,18 +240,3 @@ bind -x '"\C-uca": _peco-find-all'
 ####################################
 #           other
 ####################################
-
-# direnv
-export EDITOR="vim"
-eval "$(direnv hook bash)"
-
-# rbenv
-if [[ -d "$HOME/.rbenv" ]]; then
-  eval "$(rbenv init -)"
-fi
-
-# ndenv
-if [[ -d "$HOME/.ndenv" ]]; then
-  export PATH="$HOME/.ndenv/bin:$PATH"
-  eval "$(ndenv init -)"
-fi
