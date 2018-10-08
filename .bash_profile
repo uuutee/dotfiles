@@ -89,13 +89,11 @@ stty stop undef
 # bash_completion
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
-# enhancd
-ENHANCD_HYPHEN_ARG="-ls"
-ENHANCD_DOT_ARG="-up"
-source "$SRC_DIR/github.com/b4b4r07/enhancd/init.sh"
-
 # awsコマンドを補完する
 complete -C '/usr/local/bin/aws_completer' aws
+
+# git-completion
+source /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash
 
 
 
