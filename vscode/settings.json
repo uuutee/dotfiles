@@ -1,0 +1,8 @@
+{
+    "workbench.startupEditor": "newUntitledFile",
+    "window.zoomLevel": 0,
+    "workbench.colorTheme": "Flatland_Dark",
+    "editor.minimap.enabled": false,
+    "go.useCodeSnippetsOnMethodSuggest": true,
+    "breadcrumbs.enabled": true
+}
