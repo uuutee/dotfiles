@@ -26,6 +26,9 @@ export PATH="$PATH:$DOTFILES_DIR/bin"
 # adb
 export PATH="$PATH:/Applications/adt-bundle-mac-x86/sdk/platform-tools"
 
+# Visual Studio Code (code)
+export PATH="\$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
 # anyenv
 if [[ -d "$HOME/.anyenv" ]]; then
   export PATH="$HOME/.anyenv/bin:$PATH"
