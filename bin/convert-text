@@ -6,6 +6,7 @@ program
     .version('0.1.0')
     .option('--append-blockquotes', 'Append blockquotes', appendBlockquotes)
     .option('--to-html', 'Covert to html', toHtml)
+    .option('--trim', 'Remove space', trim)
     // parseで文字列を解析
     .parse(process.argv)
 
@@ -29,6 +30,13 @@ function toHtml() {
     // 改行brに変換
     let text = stdin.replace(/[\n\r]/g, '<br />\n');
     text = '<p>\n' + text + '\n</p>';
+
+    console.log(text)
+}
+
+function trim() {
+    const stdin = fs.readFileSync('/dev/stdin', 'utf8')
+    let text = stdin.replace(/\s/g, '');
 
     console.log(text)
 }
