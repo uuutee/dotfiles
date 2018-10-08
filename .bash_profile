@@ -74,7 +74,7 @@ export LESSCHARSET=utf-8
 export LESS='-R'
 export LESSOPEN='| /usr/local/Cellar/source-highlight/3.1.8_8/bin/src-hilite-lesspipe.sh %s'
 
-# ~/ansible.cfg が反映されないので応設定する
+# ~/ansible.cfg が反映されないので設定する
 export ANSIBLE_CONFIG=~/ansible.cfg
 
 # i-search 用に ctrl+s をリセットする
