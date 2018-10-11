@@ -156,6 +156,8 @@ alias docker-rm-all='docker rm -f $(docker ps -a -q)'
 # ansible-playbook
 alias ap='ansible-playbook'
 
+# unicode unescape
+alias unicode-unescape="sed 's/\\\u\(....\)/\&#x\1;/g' | nkf --numchar-input -w"
 
 
 ####################################
