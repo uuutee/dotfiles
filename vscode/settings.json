@@ -4,5 +4,6 @@
     "workbench.colorTheme": "Flatland_Dark",
     "editor.minimap.enabled": false,
     "go.useCodeSnippetsOnMethodSuggest": true,
-    "breadcrumbs.enabled": true
+    "breadcrumbs.enabled": true,
+    "editor.renderWhitespace": "boundary"
 }
