@@ -2,7 +2,10 @@
 .DS_Store
 sftp-config.json
 .ftpconfig
+
+# intellij idea
 .idea/
+*.iml
 
 # node.js
 /node_modules/
