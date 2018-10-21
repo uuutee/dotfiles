@@ -1,14 +1,15 @@
-# local
+# macOS
 .DS_Store
+
+# sublime text
 sftp-config.json
-.ftpconfig
 
 # intellij idea
 .idea/
 *.iml
 
 # node.js
-/node_modules/
+node_modules/
 
 # ansible
 *.retry
