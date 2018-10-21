@@ -52,7 +52,6 @@ if [[ -x $(which composer) ]]; then
 fi
 
 # direnv
-export EDITOR="vim"
 eval "$(direnv hook bash)"
 
 # gettext
@@ -69,6 +68,9 @@ export NODE_PATH=$(npm root -g)
 
 
 ###### ENV ######
+
+# EDITOR
+export EDITOR="vim"
 
 # 重複するコマンドを履歴に残さない
 export HISTCONTROL=ignoredups:erasedups
