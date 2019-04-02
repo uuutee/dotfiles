@@ -223,6 +223,11 @@ function gcop() {
     xargs git checkout
 }
 
+# git stash apply with peco
+function gsap() {
+  git stash list | peco | awk -F '{|}' '{print $2}' | xargs git stash apply
+}
+
 # docker-tag-list
 function docker-tag-list() {
   curl -s https://registry.hub.docker.com/v1/repositories/${1}/tags | jq -r .[].name
