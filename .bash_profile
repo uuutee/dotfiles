@@ -212,6 +212,17 @@ function fpa() {
   find ${path} -maxdepth 8 | peco
 }
 
+# git checkout with peco
+function gcop() {
+  git branch -a --sort=-authordate |
+    cut -b 3- |
+    perl -pe 's#^remotes/origin/###' |
+    perl -nlE 'say if !$c{$_}++' |
+    grep -v -- "->" |
+    peco |
+    xargs git checkout
+}
+
 # docker-tag-list
 function docker-tag-list() {
   curl -s https://registry.hub.docker.com/v1/repositories/${1}/tags | jq -r .[].name
