@@ -5,6 +5,7 @@ const fs = require('fs')
 program
     .version('0.1.0')
     .option('--append-blockquotes', 'Append blockquotes', appendBlockquotes)
+    .option('--remove-breaks', 'Remove breaks', removeBreaks)
     .option('--to-html', 'Covert to html', toHtml)
     .option('--trim', 'Remove space', trim)
     // parseで文字列を解析
@@ -22,6 +23,15 @@ function appendBlockquotes() {
     text = text.replace(/^.*?\n/, '')
     
     // console.log(stdin.replace(/[\n]/g, "\n> "))
+    console.log(text)
+}
+
+function removeBreaks() {
+    const stdin = fs.readFileSync('/dev/stdin', 'utf8')
+    let text = stdin
+
+    // 改行を削除
+    text = text.replace(/[\n\r]/g, '')
     console.log(text)
 }
 
