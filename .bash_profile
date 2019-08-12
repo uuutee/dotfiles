@@ -161,6 +161,9 @@ alias ap='ansible-playbook'
 # unicode unescape
 alias unicode-unescape="sed 's/\\\u\(....\)/\&#x\1;/g' | nkf --numchar-input -w"
 
+# chrome
+alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+alias chrome-canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
 
 ####################################
 #           functions
