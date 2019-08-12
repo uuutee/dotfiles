@@ -217,6 +217,16 @@ function docker-tag-list() {
   curl -s https://registry.hub.docker.com/v1/repositories/${1}/tags | jq -r .[].name
 }
 
+# 引数に渡したコマンドの処理時間を測定する
+function measure-time() {
+  local START_AT=$(date +%s)
+  echo "処理開始: $(date)"
+  eval $@
+  local END_AT=$(date +%s)
+  local TIME=$((END_AT - START_AT))
+  echo "処理終了: $(date)"
+  echo "処理にかかった時間は ${TIME} 秒です"
+}
 
 
 ####################################
