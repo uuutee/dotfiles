@@ -132,6 +132,8 @@ alias gap='git add -p'
 alias gc='git commit'
 alias gcm='git commit -m'
 alias gca='git commit --amend --no-edit'
+alias gd='git diff'
+alias gdc='git diff --cached'
 
 # ghq & hub
 alias cdg='cd $(ghq root)/$(ghq list | peco)'
