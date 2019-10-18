@@ -1,0 +1,119 @@
+
+# tap repositories and their packages
+
+tap homebrew/core
+brew adns
+brew autoconf
+brew awscli
+brew awslogs
+brew bash
+brew direnv
+brew envchain
+brew ffmpeg
+brew gdbm
+brew gettext
+brew ghq
+brew gmp
+brew gnu-sed --with-default-names
+brew gnupg
+brew gnutls
+brew go
+brew highlight
+brew icu4c
+brew jasper
+brew jpeg
+brew jq
+brew lame
+brew libassuan
+brew libevent
+brew libffi
+brew libgcrypt
+brew libgpg-error
+brew libksba
+brew libtasn1
+brew libunistring
+brew libusb
+brew lua
+brew mas
+brew mysql
+brew nettle
+brew nkf
+brew npth
+brew oniguruma
+brew openssl
+brew p11-kit
+brew peco
+brew pinentry
+brew pkg-config
+brew pngpaste
+brew postgresql
+brew pstree
+brew pwgen
+brew python
+brew rbenv
+brew readline
+brew ruby-build
+brew sqlite
+brew stern
+brew unbound
+brew watch
+brew x264
+brew xvid
+brew xz
+
+tap homebrew/cask
+cask alfred
+cask chromedriver
+cask dash
+cask firefox
+cask google-chrome
+cask hyperswitch
+cask istat-menus
+cask karabiner-elements
+cask libreoffice
+cask qlcolorcode
+cask qlmarkdown
+cask qlvideo
+cask quicklookase
+cask skitch
+cask virtualbox
+
+tap argon/mas
+
+tap rcmdnk/file
+brew brew-file
+
+# Other Cask applications
+cask bettertouchtool
+cask clipy
+cask docker
+cask github
+cask google-japanese-ime
+cask intellij-idea
+cask jasper
+cask kindle
+cask phantomjs
+cask qlimagesize
+cask qlstephen
+cask quicklook-json
+cask sequel-pro
+cask suspicious-package
+cask webpquicklook
+
+# App Store applications
+appstore 961632517 Be Focused Pro (1.7.5)
+appstore 1091189122 Bear (1.7.3)
+appstore 417375580 BetterSnapTool (1.9.2)
+appstore 456624497 Brightness Slider (1.2.6)
+appstore 549083868 Display Menu (2.2.3)
+appstore 682658836 GarageBand (10.3.3)
+appstore 408981434 iMovie (10.1.13)
+appstore 409183694 Keynote (9.2)
+appstore 539883307 LINE (5.19.0)
+appstore 441258766 Magnet (2.4.4)
+appstore 409203825 Numbers (6.2)
+appstore 882812218 Owly (2.1)
+appstore 409201541 Pages (8.2)
+appstore 844918735 PicGIF Lite (2.0.8)
+appstore 803453959 Slack (4.1.0)
+appstore 414298354 ToyViewer (5.6.0)
