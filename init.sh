@@ -12,6 +12,9 @@ ln -sf ${SCRIPT_DIR}/.gitignore_global $HOME/.gitignore_global
 if [[ ! -L "$HOME/.vim" ]]; then
     ln -s ${SCRIPT_DIR}/.vim $HOME/.vim
 fi
+if [[ ! -L "$HOME/.config/brewfile" ]]; then
+    ln -s ${SCRIPT_DIR}/.config/brewfile $HOME/.config/brewfile
+fi
 
 # molokai.vim
 (cd ${SCRIPT_DIR}; git submodule update --init)
