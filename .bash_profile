@@ -126,6 +126,7 @@ alias ctags='/usr/local/bin/ctags'
 # git
 alias g='git'
 alias gs='git status'
+alias gb='git branch'
 alias ga='git add'
 alias gaa='git add -A'
 alias gap='git add -p'
@@ -137,7 +138,6 @@ alias gdc='git diff --cached'
 
 # ghq & hub
 alias cdg='cd $(ghq root)/$(ghq list | peco)'
-alias gh='hub browse $(ghq list | peco | cut -d "/" -f 2,3)'
 
 # diffの代わりにcolordiffを使用する
 if [[ -x $(which colordiff) ]]; then
