@@ -18,6 +18,6 @@ fi
 
 # vscode
 if [[ -e "$HOME/Library/Application Support/Code/User/" ]]; then
-    ln -sf ${SCRIPT_DIR}/vscode/keybindings.json "$HOME/Library/Application Support/Code/User/keybindings.json"
-    ln -sf ${SCRIPT_DIR}/vscode/settings.json "$HOME/Library/Application Support/Code/User/settings.json"
+    ln -sf ${SCRIPT_DIR}/etc/vscode/keybindings.json "$HOME/Library/Application Support/Code/User/keybindings.json"
+    ln -sf ${SCRIPT_DIR}/etc/vscode/settings.json "$HOME/Library/Application Support/Code/User/settings.json"
 fi
