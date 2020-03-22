@@ -41,9 +41,9 @@ if [[ -d "$HOME/.rbenv" ]]; then
 fi
 
 # ndenv
-if [[ -d "$HOME/.ndenv" ]]; then
-  export PATH="$HOME/.ndenv/bin:$PATH"
-  eval "$(ndenv init -)"
+if [[ -d "$HOME/.nodenv" ]]; then
+  export PATH="$HOME/.nodenv/bin:$PATH"
+  eval "$(nodenv init -)"
 fi
 
 # composer
