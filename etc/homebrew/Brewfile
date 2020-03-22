@@ -1,0 +1,84 @@
+tap "argon/mas"
+tap "github/gh"
+tap "heroku/brew"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-versions"
+tap "homebrew/core"
+tap "rcmdnk/file"
+brew "readline"
+brew "awscli"
+brew "awslogs"
+brew "bash"
+brew "direnv"
+brew "envchain"
+brew "ffmpeg"
+brew "ghq"
+brew "gnu-sed", args: ["with-default-names"]
+brew "gnupg"
+brew "go"
+brew "jasper"
+brew "graphviz"
+brew "jq"
+brew "mysql"
+brew "nkf"
+brew "peco"
+brew "pngpaste"
+brew "postgresql"
+brew "pstree"
+brew "pwgen"
+brew "ruby-build"
+brew "rbenv"
+brew "stern"
+brew "tree"
+brew "watch"
+brew "argon/mas/mas"
+brew "github/gh/gh"
+brew "heroku/brew/heroku"
+brew "rcmdnk/file/brew-file"
+cask "alfred"
+cask "bettertouchtool"
+cask "chromedriver"
+cask "clipy"
+cask "dash"
+cask "docker"
+cask "firefox"
+cask "github"
+cask "google-chrome"
+cask "google-chrome-canary"
+cask "google-japanese-ime"
+cask "hyperswitch"
+cask "intellij-idea"
+cask "istat-menus"
+cask "jasper"
+cask "karabiner-elements"
+cask "kindle"
+cask "libreoffice"
+cask "phantomjs"
+cask "qlcolorcode"
+cask "qlimagesize"
+cask "qlmarkdown"
+cask "qlstephen"
+cask "qlvideo"
+cask "quicklook-json"
+cask "quicklookase"
+cask "sequel-pro"
+cask "skitch"
+cask "suspicious-package"
+cask "virtualbox"
+cask "webpquicklook"
+mas "Be Focused Pro", id: 961632517
+mas "Bear", id: 1091189122
+mas "BetterSnapTool", id: 417375580
+mas "Brightness Slider", id: 456624497
+mas "Display Menu", id: 549083868
+mas "GarageBand", id: 682658836
+mas "iMovie", id: 408981434
+mas "LINE", id: 539883307
+mas "Magnet", id: 441258766
+mas "Owly", id: 882812218
+mas "PicGIF Lite", id: 844918735
+mas "Slack", id: 803453959
+mas "ToyViewer", id: 414298354
+mas "Transmit", id: 1436522307
+mas "Xcode", id: 497799835
