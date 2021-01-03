@@ -109,7 +109,7 @@ stty stop undef
 complete -C '/usr/local/bin/aws_completer' aws
 
 # git-completion
-source /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash
+source "$DOTFILES_DIR/etc/git/git-completion.bash"
 
 
 
