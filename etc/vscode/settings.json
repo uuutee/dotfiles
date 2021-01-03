@@ -9,7 +9,7 @@
   "editor.tabSize": 2,
   "editor.formatOnSave": true,
   "emmet.includeLanguages": {
-    "javascript": "javascriptreact"
+    "typescript": "css"
   },
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -17,5 +17,6 @@
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
-  "vsnotes.defaultNotePath": "~/Library/Mobile Documents/com~apple~CloudDocs/VSNotes"
+  "vsnotes.defaultNotePath": "~/Library/Mobile Documents/com~apple~CloudDocs/VSNotes",
+  "workbench.editor.showTabs": true
 }
