@@ -5,6 +5,7 @@
 	root = ~/src
 [core]
 	excludesfile = ~/.gitignore_global
+	whitespace = cr-at-eol
 [alias]
 	alias = !git config --get-regexp '^alias\\.' | sed 's/alias\\.\\([^ ]*\\) \\(.*\\)/\\1\\\t => \\2/' | sort
 	s  = status
