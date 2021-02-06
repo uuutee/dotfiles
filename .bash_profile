@@ -212,7 +212,7 @@ function fpa() {
 
 # git checkout with peco
 function gcop() {
-  git branch -a --sort=-authordate |
+  git branch --sort=-authordate |
     cut -b 3- |
     perl -pe 's#^remotes/origin/###' |
     perl -nlE 'say if !$c{$_}++' |
