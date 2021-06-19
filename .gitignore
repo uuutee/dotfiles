@@ -1,2 +1,3 @@
 .DS_Store
 bin/aws-iam-authenticator
+.config/karabiner/automatic_backups/
