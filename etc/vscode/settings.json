@@ -18,5 +18,13 @@
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "vsnotes.defaultNotePath": "~/Library/Mobile Documents/com~apple~CloudDocs/VSNotes",
-  "workbench.editor.showTabs": true
+  "workbench.editor.showTabs": true,
+  "mssql.connections": [
+    {
+      "server": "{{put-server-name-here}}",
+      "database": "{{put-database-name-here}}",
+      "user": "{{put-username-here}}",
+      "password": "{{put-password-here}}"
+    }
+  ]
 }
