@@ -26,5 +26,6 @@
       "user": "{{put-username-here}}",
       "password": "{{put-password-here}}"
     }
-  ]
+  ],
+  "security.workspace.trust.untrustedFiles": "open"
 }
