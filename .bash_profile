@@ -29,12 +29,6 @@ export PATH="$PATH:/Applications/adt-bundle-mac-x86/sdk/platform-tools"
 # Visual Studio Code (code)
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
-# anyenv
-if [[ -d "$HOME/.anyenv" ]]; then
-  export PATH="$HOME/.anyenv/bin:$PATH"
-  eval "$(anyenv init -)"
-fi
-
 # rbenv
 if [[ -d "$HOME/.rbenv" ]]; then
   eval "$(rbenv init -)"
