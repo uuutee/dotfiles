@@ -284,3 +284,5 @@ bind -x '"\C-uca": _peco-find-all'
 ####################################
 #           other
 ####################################
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
