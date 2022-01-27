@@ -46,6 +46,16 @@ if [[ -d "$HOME/.nodenv" ]]; then
   eval "$(nodenv init -)"
 fi
 
+# pyenv
+if [[ -d "$HOME/.anyenv/envs/pyenv" ]]; then
+  export PYENV_ROOT="$HOME/.anyenv/envs/pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init --path)"
+  if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init -)"
+  fi
+fi
+
 # composer
 if [[ -x $(which composer) ]]; then
   export PATH="$PATH:$HOME/.composer/vendor/bin"
@@ -274,3 +284,5 @@ bind -x '"\C-uca": _peco-find-all'
 ####################################
 #           other
 ####################################
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
