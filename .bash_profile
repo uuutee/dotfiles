@@ -110,7 +110,7 @@ stty stop undef
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
 # awsコマンドを補完する
-complete -C '/usr/local/bin/aws_completer' aws
+complete -C '/usr/local/etc/bash_completion.d' aws
 
 # git-completion
 source "$DOTFILES_DIR/etc/git/git-completion.bash"
