@@ -115,6 +115,9 @@ complete -C '/usr/local/etc/bash_completion.d' aws
 # git-completion
 source "$DOTFILES_DIR/etc/git/git-completion.bash"
 
+# tmux
+source "$DOTFILES_DIR/etc/tmux/completion"
+
 
 
 ####################################
