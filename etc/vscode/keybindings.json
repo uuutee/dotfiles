@@ -93,7 +93,7 @@
     "when": "textInputFocus && !editorReadonly"
   },
   {
-    "key": "cmd+r",
+    "key": "shift+cmd+o",
     "command": "workbench.action.gotoSymbol"
   },
   {
