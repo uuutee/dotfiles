@@ -34,9 +34,14 @@ if [[ -d "$HOME/.rbenv" ]]; then
   eval "$(rbenv init -)"
 fi
 
-# ndenv
+# nodenv
 if [[ -d "$HOME/.nodenv" ]]; then
   eval "$(nodenv init -)"
+fi
+
+# pyenv
+if [[ -d "$HOME/.pyenv" ]]; then
+  eval "$(pyenv init -)"
 fi
 
 # composer
