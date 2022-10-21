@@ -17,7 +17,7 @@ Install brew packages
 brew bundle --file etc/homebrew/Brewfile
 ```
 
-## Development
+## Update
 
 Update Brewfile
 
