@@ -49,6 +49,11 @@ if [[ -x $(which composer) ]]; then
   export PATH="$PATH:$HOME/.composer/vendor/bin"
 fi
 
+#  rust
+if [[ -d "$HOME/.cargo" ]]; then
+  . "$HOME/.cargo/env"
+fi
+
 # direnv
 eval "$(direnv hook bash)"
 
