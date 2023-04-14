@@ -34,5 +34,8 @@
   "editor.inlineSuggest.enabled": true,
   "javascript.suggest.completeFunctionCalls": true,
   "typescript.suggest.completeFunctionCalls": true,
-  "git.enableSmartCommit": true
+  "git.enableSmartCommit": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  }
 }
