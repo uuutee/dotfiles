@@ -30,5 +30,8 @@
   "security.workspace.trust.untrustedFiles": "open",
   "[python]": {
     "editor.formatOnType": true
-  }
+  },
+  "editor.inlineSuggest.enabled": true,
+  "javascript.suggest.completeFunctionCalls": true,
+  "typescript.suggest.completeFunctionCalls": true
 }
