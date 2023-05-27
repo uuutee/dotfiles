@@ -49,8 +49,8 @@ if [[ -x $(which composer) ]]; then
   export PATH="$PATH:$HOME/.composer/vendor/bin"
 fi
 
-#  rust
-if [[ -d "$HOME/.cargo" ]]; then
+# rust
+if [ -f "$HOME/.cargo/env" ]; then
   . "$HOME/.cargo/env"
 fi
 
