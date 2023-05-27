@@ -2,7 +2,6 @@
   "workbench.startupEditor": "newUntitledFile",
   "window.zoomLevel": 0,
   "workbench.colorTheme": "Flatland_Dark",
-  "editor.minimap.enabled": false,
   "go.useCodeSnippetsOnMethodSuggest": true,
   "breadcrumbs.enabled": true,
   "editor.renderWhitespace": "boundary",
@@ -31,11 +30,21 @@
   "[python]": {
     "editor.formatOnType": true
   },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "editor.inlineSuggest.enabled": true,
   "javascript.suggest.completeFunctionCalls": true,
   "typescript.suggest.completeFunctionCalls": true,
   "git.enableSmartCommit": true,
   "editor.codeActionsOnSave": {
     "source.organizeImports": true
+  },
+  "editor.minimap.enabled": false,
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": true,
+    "markdown": false,
+    "scminput": false
   }
 }
