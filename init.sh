@@ -4,6 +4,7 @@ SCRIPT_DIR=$(cd $(dirname $0) && pwd)
 # file
 ln -sf ${SCRIPT_DIR}/.bash_profile $HOME/.bash_profile
 ln -sf ${SCRIPT_DIR}/.bashrc $HOME/.bashrc
+ln -sf ${SCRIPT_DIR}/.zprofile $HOME/.zprofile
 ln -sf ${SCRIPT_DIR}/.vimrc $HOME/.vimrc
 
 # vim (2重にsymlinkを作らないようにする)
