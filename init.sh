@@ -24,9 +24,3 @@ fi
 if [[ ! -L "$HOME/.config/karabiner" ]]; then
     ln -s ${SCRIPT_DIR}/.config/karabiner $HOME/.config/karabiner
 fi
-
-# vscode
-if [[ -e "$HOME/Library/Application Support/Code/User/" ]]; then
-    ln -sf ${SCRIPT_DIR}/etc/vscode/keybindings.json "$HOME/Library/Application Support/Code/User/keybindings.json"
-    ln -sf ${SCRIPT_DIR}/etc/vscode/settings.json "$HOME/Library/Application Support/Code/User/settings.json"
-fi
