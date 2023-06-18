@@ -24,3 +24,12 @@ fi
 if [[ ! -L "$HOME/.config/karabiner" ]]; then
     ln -s ${SCRIPT_DIR}/.config/karabiner $HOME/.config/karabiner
 fi
+
+# Permit QuickLook plugin
+# https://github.com/whomwah/qlstephen/issues/81#issuecomment-582365549
+if [[ ! -L "$HOME/Library/QuickLook" ]]; then
+    xattr -cr ~/Library/QuickLook/*.qlgenerator
+    qlmanage -r
+    qlmanage -r cache
+    killall Finder
+fi
