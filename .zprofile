@@ -59,24 +59,6 @@ export HISTSIZE=10000
 eval "$(direnv hook zsh)"
 
 ####################################
-#             補完系 
-####################################
-
-# bash_completion
-[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
-
-# awsコマンドを補完する
-complete -C '/usr/local/etc/bash_completion.d' aws
-
-# git-completion
-source "$DOTFILES_DIR/etc/git/git-completion.bash"
-
-# tmux
-source "$DOTFILES_DIR/etc/tmux/completion"
-
-
-
-####################################
 #             alias
 ####################################
 
@@ -195,38 +177,3 @@ function measure-time() {
   echo "処理終了: $(date)"
   echo "処理にかかった時間は ${TIME} 秒です"
 }
-
-
-####################################
-#           key bind
-####################################
-
-# search history
-function _peco-select-history() {
-  local l=$(\history | tail -r | sed -e 's/^\ *[0-9]*\ *//' | peco)
-  READLINE_LINE="${l}"
-  READLINE_POINT=${#l}
-}
-bind -x '"\C-r": _peco-select-history'
-
-# search current directory
-function _peco-find() {
-  local l=$(\find . -maxdepth 8 -a \! -regex '.*/\..*' | peco)
-  READLINE_LINE="${READLINE_LINE:0:$READLINE_POINT}${l}${READLINE_LINE:$READLINE_POINT}"
-  READLINE_POINT=$(($READLINE_POINT + ${#l}))
-}
-bind -x '"\C-uc": _peco-find'
-
-# search all current directory
-function _peco-find-all() {
-  local l=$(\find . -maxdepth 8 | peco)
-  READLINE_LINE="${READLINE_LINE:0:$READLINE_POINT}${l}${READLINE_LINE:$READLINE_POINT}"
-  READLINE_POINT=$(($READLINE_POINT + ${#l}))
-}
-bind -x '"\C-uca": _peco-find-all'
-
-####################################
-#           other
-####################################
-
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
