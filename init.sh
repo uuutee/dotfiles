@@ -31,5 +31,10 @@ if [[ ! -L "$HOME/Library/QuickLook" ]]; then
     xattr -cr ~/Library/QuickLook/*.qlgenerator
     qlmanage -r
     qlmanage -r cache
-    killall Finder
 fi
+
+# 隠しファイルを表示
+defaults write com.apple.finder AppleShowAllFiles TRUE
+
+# Finderを再起動
+killall Finder
