@@ -25,8 +25,21 @@ if [[ ! -L "$HOME/.config/karabiner" ]]; then
     ln -s ${SCRIPT_DIR}/.config/karabiner $HOME/.config/karabiner
 fi
 
-# フォルダ名をlocalizeしない
+# フォルダ名をlocalizeしないようにする
 find ~ -name '.localized' -maxdepth 2 | xargs rm -f
+file_list=(
+    '/Applications/.localized'
+    '/Users/Shared/.localized'
+    '/Library/.localized'
+)
+for file in "${file_list[@]}"
+do
+    if [ -f "$file" ]; then
+        sudo rm -f "$file"
+    else
+        echo "$file は存在しません。"
+    fi
+done
 
 # Permit QuickLook plugin
 # https://github.com/whomwah/qlstephen/issues/81#issuecomment-582365549
