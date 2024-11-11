@@ -59,13 +59,6 @@ export HISTSIZE=10000
 eval "$(direnv hook zsh)"
 
 
-####################################
-#           setting
-####################################
-
-# i-search 用に ctrl+s をリセットする
-stty stop undef
-
 
 ####################################
 #             alias
@@ -186,3 +179,14 @@ function measure-time() {
   echo "処理終了: $(date)"
   echo "処理にかかった時間は ${TIME} 秒です"
 }
+
+
+
+####################################
+#           Keybind
+####################################
+
+bindkey -e  # Emacs風のキーバインディングを使用
+bindkey "^F" forward-char
+bindkey "^B" backward-char
+bindkey "^S" history-incremental-search-forward
