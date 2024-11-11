@@ -164,6 +164,16 @@ function gsap() {
   git stash list | peco | awk -F '{|}' '{print $2}' | xargs git stash apply
 }
 
+# 最新のブランチを取得してリベースする
+function gupdate() {
+    local base=${1:-main}  # 引数がない場合はmainをデフォルト値として使用
+    git checkout "$base" && \
+    git remote update && \
+    git rebase "origin/$base" && \
+    git checkout - && \
+    git rebase "$base"
+}
+
 # docker-tag-list
 function docker-tag-list() {
   curl -s https://registry.hub.docker.com/v1/repositories/${1}/tags | jq -r .[].name
