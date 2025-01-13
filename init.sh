@@ -1,7 +1,10 @@
 #! /bin/bash
 SCRIPT_DIR=$(cd $(dirname $0) && pwd)
 
-# file
+# Permit execute script
+chmod +x ${SCRIPT_DIR}/scripts/*
+
+# Create symlinks
 ln -sf ${SCRIPT_DIR}/.bash_profile $HOME/.bash_profile
 ln -sf ${SCRIPT_DIR}/.bashrc $HOME/.bashrc
 ln -sf ${SCRIPT_DIR}/.zprofile $HOME/.zprofile
@@ -25,21 +28,8 @@ if [[ ! -L "$HOME/.config/karabiner" ]]; then
     ln -s ${SCRIPT_DIR}/.config/karabiner $HOME/.config/karabiner
 fi
 
-# フォルダ名をlocalizeしないようにする
-find ~ -name '.localized' -maxdepth 2 | xargs rm -f
-file_list=(
-    '/Applications/.localized'
-    '/Users/Shared/.localized'
-    '/Library/.localized'
-)
-for file in "${file_list[@]}"
-do
-    if [ -f "$file" ]; then
-        sudo rm -f "$file"
-    else
-        echo "$file は存在しません。"
-    fi
-done
+# Remove localized
+${SCRIPT_DIR}/scripts/remove_localized.sh
 
 # Permit QuickLook plugin
 # https://github.com/whomwah/qlstephen/issues/81#issuecomment-582365549

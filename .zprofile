@@ -80,6 +80,8 @@ alias gcm='git commit -m'
 alias gca='git commit --amend --no-edit'
 alias gd='git diff'
 alias gdc='git diff --cached'
+alias gp='git push -u origin HEAD'
+alias gsave="$DOTFILES_DIR/scripts/git_save_point.sh"
 
 # ghq & hub
 alias cdg='cd $(ghq root)/$(ghq list | peco)'
