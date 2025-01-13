@@ -53,7 +53,8 @@ export HISTCONTROL=ignoredups:erasedups
 export HISTIGNORE="pwd:cdf:cdg"
 
 # ヒストリのサイズを増やす
-export HISTSIZE=10000
+export HISTSIZE=50000
+export SAVEHIST=50000
 
 # direnv
 eval "$(direnv hook zsh)"
