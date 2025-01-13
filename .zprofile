@@ -207,5 +207,5 @@ bindkey "^S" history-incremental-search-forward
 #           Others
 ####################################
 
-# RubyMine でキーバインドが効かない問題の対応
+# RubyMine の Terminalでキーバインドが効かない問題の対応
 bindkey -e
