@@ -80,6 +80,7 @@ alias gcm='git commit -m'
 alias gca='git commit --amend --no-edit'
 alias gd='git diff'
 alias gdc='git diff --cached'
+alias gp='git push -u origin HEAD'
 
 # ghq & hub
 alias cdg='cd $(ghq root)/$(ghq list | peco)'
