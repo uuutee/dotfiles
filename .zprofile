@@ -200,3 +200,12 @@ bindkey -e  # Emacs風のキーバインディングを使用
 bindkey "^F" forward-char
 bindkey "^B" backward-char
 bindkey "^S" history-incremental-search-forward
+
+
+
+####################################
+#           Others
+####################################
+
+# RubyMine でキーバインドが効かない問題の対応
+bindkey -e
