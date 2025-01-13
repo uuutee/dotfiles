@@ -80,8 +80,12 @@ alias gcm='git commit -m'
 alias gca='git commit --amend --no-edit'
 alias gd='git diff'
 alias gdc='git diff --cached'
-alias gp='git push -u origin HEAD'
+
+# 変更したファイルをすべてコミット
 alias gsave="$DOTFILES_DIR/scripts/git_save_point.sh"
+
+# git push && PR 作成URLの表示
+alias gp='git push -u origin HEAD && gh-pr-url'
 
 # ghq & hub
 alias cdg='cd $(ghq root)/$(ghq list | peco)'
@@ -151,6 +155,23 @@ function fpa() {
   find ${path} -maxdepth 8 | peco
 }
 
+# 現在のリポジトリのURLを表示
+function gh-repo-url() {
+  if gh repo view > /dev/null 2>&1; then
+    gh repo view --json url --jq .url
+  else
+    echo "Gitリポジトリではないか、GitHub CLIが正しく設定されていません。" >&2
+  fi
+}
+
+# 現在のブランチのPR作成URLを表示
+function gh-pr-url() {
+  local repo_url branch_name
+  repo_url=$(gh-repo-url)
+  branch_name=$(git rev-parse --abbrev-ref HEAD)
+  echo "${repo_url}/compare/${branch_name}?expand=1"
+}
+
 # git checkout with peco
 function gcop() {
   git branch --sort=-authordate |
@@ -192,7 +213,6 @@ function measure-time() {
   echo "処理終了: $(date)"
   echo "処理にかかった時間は ${TIME} 秒です"
 }
-
 
 
 ####################################
