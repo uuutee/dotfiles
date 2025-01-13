@@ -176,6 +176,11 @@ function gupdate() {
     git rebase "$base"
 }
 
+# 現在の変更を自動コミットする
+function gsave() {
+  $DOTFILES_DIR/scripts/git_save_point.sh
+}
+
 # docker-tag-list
 function docker-tag-list() {
   curl -s https://registry.hub.docker.com/v1/repositories/${1}/tags | jq -r .[].name
