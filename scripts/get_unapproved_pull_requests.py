@@ -1,4 +1,5 @@
 import argparse
+import os
 
 import requests
 
@@ -33,7 +34,7 @@ def main():
     parser = argparse.ArgumentParser(description='GitHub 未承認の Pull Request を抽出するスクリプト')
     parser.add_argument('--owner', required=True, help='リポジトリのオーナー名')
     parser.add_argument('--repo', required=True, help='リポジトリ名')
-    parser.add_argument('--token', required=True, help='GitHub API トークン')
+    parser.add_argument('--token', required=False, help='GitHub API トークン', default=os.getenv('GITHUB_TOKEN'))
 
     args = parser.parse_args()
 
