@@ -43,6 +43,11 @@ fi
 
 ###### ENV ######
 
+# Load environment variables from .env file
+if [ -f ${DOTFILES_DIR}/.env ]; then
+  export $(grep -v '^#' ${DOTFILES_DIR}/.env | xargs)
+fi
+
 # EDITOR
 export EDITOR="vim"
 
