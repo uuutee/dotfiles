@@ -16,6 +16,9 @@ export PATH="$PATH:$DOTFILES_DIR/bin"
 # Homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+# Homebrewの自動更新を無効化
+export HOMEBREW_NO_AUTO_UPDATE=1
+
 # pyenv
 export PATH="$HOME/.pyenv/shims:$PATH"
 eval "$(pyenv init -)"
