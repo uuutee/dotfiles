@@ -58,11 +58,7 @@ export EDITOR="vim"
 export HISTCONTROL=ignoredups:erasedups
 
 # よく使うコマンドは保存しない（:で区切る）
-export HISTIGNORE="pwd:cdf:cdg"
-
-# ヒストリのサイズを増やす
-export HISTSIZE=50000
-export SAVEHIST=50000
+export HISTIGNORE="pwd:cdf:cdg:gs:gd:gaa:gp"
 
 # direnv
 eval "$(direnv hook zsh)"
