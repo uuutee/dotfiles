@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "dotfiles"
+version = "0.1.0"
+description = "dotfiles"
+authors = ["Your Name <your.email@example.com>"]
+packages = [
+    { include = "scripts" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+PyGithub = "^2.1.1"
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.2.0"
+isort = "^5.13.2"
+mypy = "^1.8.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+get-unapproved-prs = "scripts.python.get_unapproved_pull_requests:main"
