@@ -30,7 +30,7 @@ if [[ ! -L "$HOME/.config/karabiner" ]]; then
 fi
 
 # Remove localized
-${SCRIPT_DIR}/scripts/remove_localized.sh
+${SCRIPT_DIR}/scripts/shell/remove_localized.sh
 
 # Permit QuickLook plugin
 # https://github.com/whomwah/qlstephen/issues/81#issuecomment-582365549

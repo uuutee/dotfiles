@@ -21,4 +21,4 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-get-unapproved-prs = "scripts.get_unapproved_pull_requests:main"
+get-unapproved-prs = "scripts.python.get_unapproved_pull_requests:main"

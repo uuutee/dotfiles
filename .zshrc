@@ -90,7 +90,7 @@ alias gd='git diff'
 alias gdc='git diff --cached'
 
 # 変更したファイルをすべてコミット
-alias gsave="$DOTFILES_DIR/scripts/git_save_point.sh"
+alias gsave="$DOTFILES_DIR/scripts/shell/git_save_point.sh"
 
 # git push && PR 作成URLの表示
 alias gp='git push -u origin HEAD && gh-pr-url'
