@@ -1,32 +1,38 @@
+#!/usr/bin/env python3
+
 import argparse
 import os
+from typing import List, TypedDict
 
-import requests
+from github import Github
+from github.PullRequest import PullRequest
 
 
-def get_unapproved_pull_requests(owner, repo, token):
-    # API ヘッダー
-    headers = {
-        'Authorization': f'token {token}',
-        'Accept': 'application/vnd.github.v3+json',
-    }
+class GitHubPullRequest(TypedDict):
+    title: str
+    html_url: str
+    number: int
+    state: str
 
-    # Pull Request を取得するための URL
-    url = f'https://api.github.com/repos/{owner}/{repo}/pulls'
-
-    # Pull Request を取得
-    response = requests.get(url, headers=headers)
-    pull_requests = response.json()
-
+def get_unapproved_pull_requests(owner: str, repo: str, token: str) -> List[GitHubPullRequest]:
+    # GitHub クライアントの初期化
+    g = Github(token)
+    
+    # リポジトリの取得
+    repo = g.get_repo(f"{owner}/{repo}")
+    
     # 未承認の Pull Request をフィルタリング
-    unapproved_prs = []
-    for pr in pull_requests:
-        reviews_url = pr['url'] + '/reviews'
-        reviews_response = requests.get(reviews_url, headers=headers)
-        reviews = reviews_response.json()
-        approved = any(review['state'] == 'APPROVED' for review in reviews)
+    unapproved_prs: List[GitHubPullRequest] = []
+    for pr in repo.get_pulls(state='open'):
+        reviews = pr.get_reviews()
+        approved = any(review.state == 'APPROVED' for review in reviews)
         if not approved:
-            unapproved_prs.append(pr)
+            unapproved_prs.append({
+                'title': pr.title,
+                'html_url': pr.html_url,
+                'number': pr.number,
+                'state': pr.state
+            })
 
     return unapproved_prs
 
