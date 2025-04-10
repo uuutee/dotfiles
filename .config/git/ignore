@@ -1,27 +1,40 @@
 # macOS
+
 .DS_Store
 
 # sublime text
+
 sftp-config.json
 
 # vscode
+
 .vscode/
 
 # intellij idea
+
 .idea/
-*.iml
+\*.iml
 
 # node.js
+
 node_modules/
 
 # ansible
-*.retry
+
+\*.retry
 
 # direnv
+
 .envrc
 
 # Ruby
+
 .byebug_history
 
 # Python
-__pycache__/
+
+**pycache**/
+
+# Cline
+
+.clinerules/
