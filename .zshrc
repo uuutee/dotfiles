@@ -93,6 +93,9 @@ alias gdc='git diff --cached'
 # 変更したファイルをすべてコミット
 alias gsave="$DOTFILES_DIR/scripts/shell/git_save_point.sh"
 
+# ベースコミットから新規ブランチを作成して、それ以降のコミットを移動する
+alias gmv="$DOTFILES_DIR/scripts/shell/git_move_commits.sh"
+
 # git push && PR 作成URLの表示
 alias gp='git push -u origin HEAD && gh-pr-url'
 
