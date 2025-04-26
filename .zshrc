@@ -210,6 +210,20 @@ function gupdate() {
     git rebase "$base"
 }
 
+# マージ済みブランチを掃除する
+# 引数に -f, --force を指定すると強制的に削除する
+function gclean () {
+  local opt="-d"                                    # デフォ: 安全削除
+  [[ "$1" == "--force" || "$1" == "-f" ]] && opt="-D"
+
+  local base=$(git symbolic-ref --short HEAD)       # HEAD の名前
+  local protect="(^\\*|${base}|main|master|dev|development)"        # 消さない枝パターン
+
+  git branch --merged \
+    | grep -vE "${protect}" \
+    | xargs -r -n 1 git branch "${opt}"
+}
+
 # docker-tag-list
 function docker-tag-list() {
   curl -s https://registry.hub.docker.com/v1/repositories/${1}/tags | jq -r .[].name
