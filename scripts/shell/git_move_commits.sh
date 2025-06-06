@@ -26,10 +26,10 @@ echo "🌿 新規ブランチ   : $NEW_BRANCH"
 echo
 
 # ベース以降のコミットを古い順で取得
-COMMITS=$(git rev-list --reverse "${BASE_COMMIT}".."${OLD_BRANCH}")
+COMMITS=$(git rev-list --reverse "${BASE_COMMIT}"..HEAD)
 
-# 新規ブランチをベースコミットから作成
-git checkout -b "$NEW_BRANCH" "$BASE_COMMIT"
+# 新規ブランチをmainブランチから作成
+git checkout master && git checkout -b "$NEW_BRANCH"
 
 # ひとつひとつ cherry-pick
 for C in $COMMITS; do
