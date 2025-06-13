@@ -96,6 +96,9 @@ alias gsave="$DOTFILES_DIR/scripts/shell/git_save_point.sh"
 # ベースコミットから新規ブランチを作成して、それ以降のコミットを移動する
 alias gmv="$DOTFILES_DIR/scripts/shell/git_move_commits.sh"
 
+# 最新のブランチを取得してリベースする
+alias gupdate="$DOTFILES_DIR/scripts/shell/git_update.sh"
+
 # git push && PR 作成URLの表示
 alias gp='git push -u origin HEAD && gh-pr-url'
 
@@ -200,15 +203,6 @@ function gsap() {
   git stash list | peco | awk -F '{|}' '{print $2}' | xargs git stash apply
 }
 
-# 最新のブランチを取得してリベースする
-function gupdate() {
-    local base=${1:-main}  # 引数がない場合はmainをデフォルト値として使用
-    git checkout "$base" && \
-    git remote update && \
-    git rebase "origin/$base" && \
-    git checkout - && \
-    git rebase "$base"
-}
 
 # マージ済みブランチを掃除する
 # 引数に -f, --force を指定すると強制的に削除する
