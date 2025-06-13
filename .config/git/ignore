@@ -38,3 +38,5 @@ node_modules/
 # Personal project settings
 
 .uuutee/
+
+**/.claude/settings.local.json
