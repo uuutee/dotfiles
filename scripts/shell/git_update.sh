@@ -27,7 +27,7 @@ echo ''
 echo "♻️ 現在のブランチ: $CURRENT_BRANCH を $BASE_BRANCH にリベースします。"
 echo ''
 
-git checkout -
+git checkout "$CURRENT_BRANCH"
 git rebase "$BASE_BRANCH"
 
 echo ''
