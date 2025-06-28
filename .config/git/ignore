@@ -1,42 +1,34 @@
 # macOS
-
 .DS_Store
 
 # sublime text
-
 sftp-config.json
 
 # vscode
-
-.vscode/
+/.vscode/
 
 # intellij idea
-
 .idea/
 \*.iml
 
 # node.js
-
-node_modules/
+/node_modules/
 
 # ansible
-
 \*.retry
 
 # direnv
-
 .envrc
 
 # Ruby
-
 .byebug_history
 
 # Python
-
 **pycache**/
 
 # Personal project settings
+/.memo/
+/.uuutee/
 
-.uuutee/
-
+# Claude
 **/.claude/settings.local.json
