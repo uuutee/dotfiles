@@ -16,7 +16,7 @@ fi
 
 echo ''
 echo "🌿 現在のブランチ: $CURRENT_BRANCH"
-echo "🌿 ベースブランチ: $BASE_BRANCH を最新の状態にリベースします。"
+echo "🌲 ベースブランチ: $BASE_BRANCH を origin/$BASE_BRANCH にリベースします。"
 echo ''
 
 git checkout "$BASE_BRANCH"
@@ -24,10 +24,10 @@ git remote update
 git rebase "origin/$BASE_BRANCH"
 
 echo ''
-echo "🌿 ブランチ: $CURRENT_BRANCH を最新の状態にリベースします。"
+echo "♻️ 現在のブランチ: $CURRENT_BRANCH を $BASE_BRANCH にリベースします。"
 echo ''
 
-git checkout -
+git checkout "$CURRENT_BRANCH"
 git rebase "$BASE_BRANCH"
 
 echo ''

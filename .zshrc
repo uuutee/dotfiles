@@ -102,6 +102,9 @@ alias gupdate="$DOTFILES_DIR/scripts/shell/git_update.sh"
 # git push && PR 作成URLの表示
 alias gp='git push -u origin HEAD && gh-pr-url'
 
+# GitHub issues export
+alias ghei='$DOTFILES_DIR/scripts/shell/gh-export-issues.sh'
+
 # ghq & hub
 alias cdg='cd $(ghq root)/$(ghq list | peco)'
 
