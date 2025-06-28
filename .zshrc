@@ -91,19 +91,19 @@ alias gd='git diff'
 alias gdc='git diff --cached'
 
 # 変更したファイルをすべてコミット
-alias gsave="$DOTFILES_DIR/scripts/shell/git_save_point.sh"
+alias gsave="$DOTFILES_DIR/scripts/git_save_point/main.sh"
 
 # ベースコミットから新規ブランチを作成して、それ以降のコミットを移動する
-alias gmv="$DOTFILES_DIR/scripts/shell/git_move_commits.sh"
+alias gmv="$DOTFILES_DIR/scripts/git_move_commits/main.sh"
 
 # 最新のブランチを取得してリベースする
-alias gupdate="$DOTFILES_DIR/scripts/shell/git_update.sh"
+alias gupdate="$DOTFILES_DIR/scripts/git_update/main.sh"
 
 # git push && PR 作成URLの表示
 alias gp='git push -u origin HEAD && gh-pr-url'
 
 # GitHub issues export
-alias ghei='$DOTFILES_DIR/scripts/shell/gh-export-issues.sh'
+alias ghei='$DOTFILES_DIR/scripts/gh_export_issues/main.sh'
 
 # ghq & hub
 alias cdg='cd $(ghq root)/$(ghq list | peco)'
