@@ -35,7 +35,7 @@ go build -o gh-export-issues main.go
 ### ビルドせずに実行
 
 ```bash
-go run main.go [options] [owner/repo]
+go run main.go [options]
 ```
 
 ## 使い方
