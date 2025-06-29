@@ -53,7 +53,7 @@ gh-export-issues -o .memo/issues
 # または
 go run main.go -o .memo/issues
 
-# 特定のリポジトリを指定（./repo-name/issues/ に保存）
+# 特定のリポジトリを指定（./owner/repo/issues/ に保存）
 gh-export-issues -r owner/repo
 # または
 go run main.go -r owner/repo
@@ -73,7 +73,7 @@ go run main.go -r owner/repo -o ~/Documents/issues
 ### デフォルトの出力ディレクトリ
 
 - カレントリポジトリの場合: `./issues/`
-- リポジトリを指定した場合: `./[repo-name]/issues/`
+- リポジトリを指定した場合: `./[owner]/[repo]/issues/`
 
 ## 出力形式
 

@@ -83,13 +83,11 @@ func main() {
 		isCurrentRepo = true
 	}
 
-	repoName := getRepoName(repo)
-
 	if outputDir == "" {
 		if isCurrentRepo {
 			outputDir = "./issues"
 		} else {
-			outputDir = fmt.Sprintf("./%s/issues", repoName)
+			outputDir = fmt.Sprintf("./%s/issues", repo)
 		}
 	}
 
@@ -120,12 +118,12 @@ func showHelp() {
 	fmt.Println()
 	fmt.Println("Default output directories:")
 	fmt.Println("  - Current repository: ./issues/")
-	fmt.Println("  - Specified repository: ./[repo-name]/issues/")
+	fmt.Println("  - Specified repository: ./[owner]/[repo]/issues/")
 	fmt.Println()
 	fmt.Println("Examples:")
 	fmt.Println("  gh-export-issues                          # Export current repo to ./issues/")
 	fmt.Println("  gh-export-issues -o .memo/issues          # Export current repo to .memo/issues/")
-	fmt.Println("  gh-export-issues -r owner/repo            # Export specified repo to ./repo/issues/")
+	fmt.Println("  gh-export-issues -r owner/repo            # Export specified repo to ./owner/repo/issues/")
 	fmt.Println("  gh-export-issues -r owner/repo -o ~/docs  # Export specified repo to ~/docs/")
 }
 
@@ -138,13 +136,6 @@ func getCurrentRepo() (string, error) {
 	return strings.TrimSpace(string(output)), nil
 }
 
-func getRepoName(repo string) string {
-	parts := strings.Split(repo, "/")
-	if len(parts) > 1 {
-		return parts[len(parts)-1]
-	}
-	return repo
-}
 
 func sanitizeTitle(title string) string {
 	reg := regexp.MustCompile(`[^a-zA-Z0-9._-]`)
