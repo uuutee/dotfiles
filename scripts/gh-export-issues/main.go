@@ -42,15 +42,33 @@ type CommentsResponse struct {
 	Comments []Comment `json:"comments"`
 }
 
+type IssueFilters struct {
+	ID       string
+	Status   string
+	Label    string
+	Assignee string
+	Author   string
+}
+
 func main() {
 	var outputDir string
 	var repo string
+	var issueID string
+	var status string
+	var label string
+	var assignee string
+	var author string
 	var help bool
 
 	flag.StringVar(&outputDir, "o", "", "Output directory")
 	flag.StringVar(&outputDir, "output", "", "Output directory")
 	flag.StringVar(&repo, "r", "", "Repository (owner/repo)")
 	flag.StringVar(&repo, "repo", "", "Repository (owner/repo)")
+	flag.StringVar(&issueID, "id", "", "Specific issue ID to export")
+	flag.StringVar(&status, "status", "all", "Issue status: open, closed, or all (default: all)")
+	flag.StringVar(&label, "label", "", "Filter by label")
+	flag.StringVar(&assignee, "assignee", "", "Filter by assignee")
+	flag.StringVar(&author, "author", "", "Filter by author")
 	flag.BoolVar(&help, "h", false, "Show help message")
 	flag.BoolVar(&help, "help", false, "Show help message")
 	flag.Parse()
@@ -95,10 +113,36 @@ func main() {
 		os.Exit(1)
 	}
 
+	// Create filter options
+	filters := IssueFilters{
+		ID:       issueID,
+		Status:   status,
+		Label:    label,
+		Assignee: assignee,
+		Author:   author,
+	}
+
 	fmt.Printf("Exporting issues from repository: %s\n", repo)
 	fmt.Printf("Output directory: %s\n", outputDir)
+	
+	// Print active filters
+	if filters.ID != "" {
+		fmt.Printf("Filter - Issue ID: %s\n", filters.ID)
+	}
+	if filters.Status != "all" {
+		fmt.Printf("Filter - Status: %s\n", filters.Status)
+	}
+	if filters.Label != "" {
+		fmt.Printf("Filter - Label: %s\n", filters.Label)
+	}
+	if filters.Assignee != "" {
+		fmt.Printf("Filter - Assignee: %s\n", filters.Assignee)
+	}
+	if filters.Author != "" {
+		fmt.Printf("Filter - Author: %s\n", filters.Author)
+	}
 
-	if err := exportIssues(repo, outputDir); err != nil {
+	if err := exportIssues(repo, outputDir, filters); err != nil {
 		fmt.Printf("Error exporting issues: %v\n", err)
 		os.Exit(1)
 	}
@@ -113,6 +157,11 @@ func showHelp() {
 	fmt.Println("Options:")
 	fmt.Println("  -o, --output DIR       Output directory")
 	fmt.Println("  -r, --repo OWNER/REPO  Repository to export (default: current repo)")
+	fmt.Println("  -id ID                 Export specific issue by ID")
+	fmt.Println("  -status STATUS         Filter by status: open, closed, or all (default: all)")
+	fmt.Println("  -label LABEL           Filter by label")
+	fmt.Println("  -assignee USER         Filter by assignee")
+	fmt.Println("  -author USER           Filter by author")
 	fmt.Println("  -h, --help             Show this help message")
 	fmt.Println()
 	fmt.Println("Default output directories:")
@@ -120,10 +169,12 @@ func showHelp() {
 	fmt.Println("  - Specified repository: ./[owner]/[repo]/issues/")
 	fmt.Println()
 	fmt.Println("Examples:")
-	fmt.Println("  gh-export-issues                          # Export current repo to ./issues/")
-	fmt.Println("  gh-export-issues -o .memo/issues          # Export current repo to .memo/issues/")
-	fmt.Println("  gh-export-issues -r owner/repo            # Export specified repo to ./owner/repo/issues/")
-	fmt.Println("  gh-export-issues -r owner/repo -o ~/docs  # Export specified repo to ~/docs/")
+	fmt.Println("  gh-export-issues                          # Export all issues")
+	fmt.Println("  gh-export-issues -status open             # Export only open issues")
+	fmt.Println("  gh-export-issues -label bug               # Export issues with 'bug' label")
+	fmt.Println("  gh-export-issues -author username         # Export issues by specific author")
+	fmt.Println("  gh-export-issues -id 123                  # Export specific issue #123")
+	fmt.Println("  gh-export-issues -r owner/repo -o ~/docs  # Export from other repo")
 }
 
 func getCurrentRepo() (string, error) {
@@ -137,11 +188,62 @@ func getCurrentRepo() (string, error) {
 
 
 
-func exportIssues(repo, outputDir string) error {
+func exportSingleIssue(repo, outputDir, issueID string) error {
+	fmt.Printf("Fetching issue #%s...\n", issueID)
+	
+	cmd := exec.Command("gh", "issue", "view", issueID, "--repo", repo,
+		"--json", "number,title,body,state,createdAt,updatedAt,author,labels,assignees,comments")
+	output, err := cmd.Output()
+	if err != nil {
+		return fmt.Errorf("failed to fetch issue #%s: %w", issueID, err)
+	}
+
+	var issue Issue
+	if err := json.Unmarshal(output, &issue); err != nil {
+		return fmt.Errorf("failed to parse issue: %w", err)
+	}
+
+	if err := exportIssue(repo, outputDir, issue); err != nil {
+		return fmt.Errorf("error exporting issue #%s: %w", issueID, err)
+	}
+	
+	fmt.Printf("Exporting issue #%d: %s\n", issue.Number, issue.Title)
+	return nil
+}
+
+func exportIssues(repo, outputDir string, filters IssueFilters) error {
 	fmt.Println("Fetching issues...")
 	
-	cmd := exec.Command("gh", "issue", "list", "--repo", repo, "--state", "all", "--limit", "10000", 
-		"--json", "number,title,body,state,createdAt,updatedAt,author,labels,assignees,comments")
+	// Build command arguments
+	args := []string{"issue", "list", "--repo", repo, "--limit", "10000",
+		"--json", "number,title,body,state,createdAt,updatedAt,author,labels,assignees,comments"}
+	
+	// Add filters
+	if filters.Status != "all" && filters.Status != "" {
+		args = append(args, "--state", filters.Status)
+	} else {
+		args = append(args, "--state", "all")
+	}
+	
+	if filters.Label != "" {
+		args = append(args, "--label", filters.Label)
+	}
+	
+	if filters.Assignee != "" {
+		args = append(args, "--assignee", filters.Assignee)
+	}
+	
+	if filters.Author != "" {
+		args = append(args, "--author", filters.Author)
+	}
+	
+	// Handle specific issue ID
+	if filters.ID != "" {
+		// For specific issue, use 'gh issue view' instead
+		return exportSingleIssue(repo, outputDir, filters.ID)
+	}
+	
+	cmd := exec.Command("gh", args...)
 	output, err := cmd.Output()
 	if err != nil {
 		return fmt.Errorf("failed to fetch issues: %w", err)
@@ -150,6 +252,11 @@ func exportIssues(repo, outputDir string) error {
 	var issues []Issue
 	if err := json.Unmarshal(output, &issues); err != nil {
 		return fmt.Errorf("failed to parse issues: %w", err)
+	}
+
+	if len(issues) == 0 {
+		fmt.Println("No issues found matching the filters.")
+		return nil
 	}
 
 	for _, issue := range issues {

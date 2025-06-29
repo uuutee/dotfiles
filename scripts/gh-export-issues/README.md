@@ -62,12 +62,25 @@ go run main.go -r owner/repo
 gh-export-issues -r owner/repo -o ~/Documents/issues
 # または
 go run main.go -r owner/repo -o ~/Documents/issues
+
+# フィルタリングの例
+gh-export-issues -status open              # オープンな Issue のみ
+gh-export-issues -label bug                # "bug" ラベルが付いた Issue
+gh-export-issues -author uuutee            # 特定ユーザーが作成した Issue
+gh-export-issues -assignee uuutee          # 特定ユーザーにアサインされた Issue
+gh-export-issues -id 123                   # Issue #123 のみ
+gh-export-issues -status open -label bug   # 複数条件の組み合わせ
 ```
 
 ### オプション
 
 - `-o, --output DIR`: 出力ディレクトリを指定
 - `-r, --repo OWNER/REPO`: エクスポートするリポジトリを指定（デフォルト: カレントリポジトリ）
+- `-id ID`: 特定の Issue ID を指定してエクスポート
+- `-status STATUS`: Issue のステータスでフィルタ（open, closed, all）デフォルト: all
+- `-label LABEL`: ラベルでフィルタ
+- `-assignee USER`: アサイニーでフィルタ
+- `-author USER`: 作成者でフィルタ
 - `-h, --help`: ヘルプメッセージを表示
 
 ### デフォルトの出力ディレクトリ
