@@ -152,7 +152,7 @@ func main() {
 
 func showHelp() {
 	fmt.Println("GitHub Issues to Markdown Exporter")
-	fmt.Println("Usage: gh-export-issues [options]")
+	fmt.Println("Usage: gh-issue-export [options]")
 	fmt.Println()
 	fmt.Println("Options:")
 	fmt.Println("  -o, --output DIR       Output directory")
@@ -169,12 +169,12 @@ func showHelp() {
 	fmt.Println("  - Specified repository: ./[owner]/[repo]/issues/")
 	fmt.Println()
 	fmt.Println("Examples:")
-	fmt.Println("  gh-export-issues                          # Export all issues")
-	fmt.Println("  gh-export-issues -status open             # Export only open issues")
-	fmt.Println("  gh-export-issues -label bug               # Export issues with 'bug' label")
-	fmt.Println("  gh-export-issues -author username         # Export issues by specific author")
-	fmt.Println("  gh-export-issues -id 123                  # Export specific issue #123")
-	fmt.Println("  gh-export-issues -r owner/repo -o ~/docs  # Export from other repo")
+	fmt.Println("  gh-issue-export                          # Export all issues")
+	fmt.Println("  gh-issue-export -status open             # Export only open issues")
+	fmt.Println("  gh-issue-export -label bug               # Export issues with 'bug' label")
+	fmt.Println("  gh-issue-export -author username         # Export issues by specific author")
+	fmt.Println("  gh-issue-export -id 123                  # Export specific issue #123")
+	fmt.Println("  gh-issue-export -r owner/repo -o ~/docs  # Export from other repo")
 }
 
 func getCurrentRepo() (string, error) {

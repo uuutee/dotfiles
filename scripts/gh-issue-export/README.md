@@ -13,7 +13,7 @@ GitHub リポジトリの Issue を Markdown ファイルとしてエクスポ�
 
 ## PATH の設定
 
-dotfiles/bin に PATH を通すことで、どこからでも `gh-export-issues` コマンドを実行できます：
+dotfiles/bin に PATH を通すことで、どこからでも `gh-issue-export` コマンドを実行できます：
 
 ```bash
 # ~/.zshrc または ~/.bashrc に以下を追加
@@ -26,10 +26,10 @@ export PATH="$HOME/src/github.com/uuutee/dotfiles/bin:$PATH"
 
 ```bash
 # dotfiles/bin にビルド（推奨）
-go build -o ../../bin/gh-export-issues main.go
+cd scripts/gh-issue-export && go build -o ../../bin/gh-issue-export main.go
 
 # または、カレントディレクトリにビルド
-go build -o gh-export-issues main.go
+go build -o gh-issue-export main.go
 ```
 
 ### ビルドせずに実行
@@ -44,32 +44,32 @@ go run main.go [options]
 
 ```bash
 # カレントリポジトリの Issue をエクスポート（./issues/ に保存）
-gh-export-issues
+gh-issue-export
 # または
 go run main.go
 
 # カレントリポジトリを指定ディレクトリにエクスポート
-gh-export-issues -o .memo/issues
+gh-issue-export -o .memo/issues
 # または
 go run main.go -o .memo/issues
 
 # 特定のリポジトリを指定（./owner/repo/issues/ に保存）
-gh-export-issues -r owner/repo
+gh-issue-export -r owner/repo
 # または
 go run main.go -r owner/repo
 
 # リポジトリと出力ディレクトリの両方を指定
-gh-export-issues -r owner/repo -o ~/Documents/issues
+gh-issue-export -r owner/repo -o ~/Documents/issues
 # または
 go run main.go -r owner/repo -o ~/Documents/issues
 
 # フィルタリングの例
-gh-export-issues -status open              # オープンな Issue のみ
-gh-export-issues -label bug                # "bug" ラベルが付いた Issue
-gh-export-issues -author uuutee            # 特定ユーザーが作成した Issue
-gh-export-issues -assignee uuutee          # 特定ユーザーにアサインされた Issue
-gh-export-issues -id 123                   # Issue #123 のみ
-gh-export-issues -status open -label bug   # 複数条件の組み合わせ
+gh-issue-export -status open              # オープンな Issue のみ
+gh-issue-export -label bug                # "bug" ラベルが付いた Issue
+gh-issue-export -author uuutee            # 特定ユーザーが作成した Issue
+gh-issue-export -assignee uuutee          # 特定ユーザーにアサインされた Issue
+gh-issue-export -id 123                   # Issue #123 のみ
+gh-issue-export -status open -label bug   # 複数条件の組み合わせ
 ```
 
 ### オプション
