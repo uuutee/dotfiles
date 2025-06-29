@@ -79,7 +79,7 @@ go run main.go -r owner/repo -o ~/Documents/issues
 
 各 Issue は以下の形式で保存されます：
 
-- ファイル名: `{issue番号}-{サニタイズされたタイトル}.md`
+- ディレクトリ構造: `{issue番号}/index.md`
 - 内容:
   - Issue のメタデータ（状態、作成者、作成日時、更新日時、ラベル、アサイニー）
   - Issue の本文
@@ -90,10 +90,9 @@ go run main.go -r owner/repo -o ~/Documents/issues
 - Go 言語で実装
 - GitHub CLI (`gh`) コマンドを内部で使用
 - JSON 形式で Issue データを取得し、Markdown に変換
-- ファイル名は OS のファイルシステムに適合するようサニタイズ
+- 各 Issue は個別のディレクトリに保存
 
 ## 制限事項
 
 - 一度に最大 10,000 件の Issue を取得
-- ファイル名のタイトル部分は最大 50 文字に制限
 - GitHub CLI の認証が必要

@@ -7,7 +7,6 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
-	"regexp"
 	"strings"
 	"time"
 )
@@ -137,14 +136,6 @@ func getCurrentRepo() (string, error) {
 }
 
 
-func sanitizeTitle(title string) string {
-	reg := regexp.MustCompile(`[^a-zA-Z0-9._-]`)
-	sanitized := reg.ReplaceAllString(title, "_")
-	if len(sanitized) > 50 {
-		sanitized = sanitized[:50]
-	}
-	return sanitized
-}
 
 func exportIssues(repo, outputDir string) error {
 	fmt.Println("Fetching issues...")
@@ -173,9 +164,13 @@ func exportIssues(repo, outputDir string) error {
 }
 
 func exportIssue(repo, outputDir string, issue Issue) error {
-	safeTitle := sanitizeTitle(issue.Title)
-	filename := filepath.Join(outputDir, fmt.Sprintf("%d-%s.md", issue.Number, safeTitle))
+	// Create directory for the issue
+	issueDir := filepath.Join(outputDir, fmt.Sprintf("%d", issue.Number))
+	if err := os.MkdirAll(issueDir, 0755); err != nil {
+		return fmt.Errorf("failed to create issue directory: %w", err)
+	}
 
+	filename := filepath.Join(issueDir, "index.md")
 	file, err := os.Create(filename)
 	if err != nil {
 		return err
