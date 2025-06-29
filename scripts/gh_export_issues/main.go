@@ -45,10 +45,13 @@ type CommentsResponse struct {
 
 func main() {
 	var outputDir string
+	var repo string
 	var help bool
 
 	flag.StringVar(&outputDir, "o", "", "Output directory")
 	flag.StringVar(&outputDir, "output", "", "Output directory")
+	flag.StringVar(&repo, "r", "", "Repository (owner/repo)")
+	flag.StringVar(&repo, "repo", "", "Repository (owner/repo)")
 	flag.BoolVar(&help, "h", false, "Show help message")
 	flag.BoolVar(&help, "help", false, "Show help message")
 	flag.Parse()
@@ -58,17 +61,22 @@ func main() {
 		return
 	}
 
-	repo := ""
+	// Check for unnamed arguments
 	if flag.NArg() > 0 {
-		repo = flag.Arg(0)
+		fmt.Println("Error: Unnamed arguments are not supported.")
+		fmt.Println("Use -o/--output for output directory or -r/--repo for repository.")
+		fmt.Println("Run with -h/--help for usage information.")
+		os.Exit(1)
 	}
 
 	isCurrentRepo := false
+	
+	// If no repo specified, try to get current repo
 	if repo == "" {
 		currentRepo, err := getCurrentRepo()
 		if err != nil {
 			fmt.Println("Error: No repository specified and not in a git repository.")
-			fmt.Println("Please specify a repository (e.g., owner/repo) or run from within a repository.")
+			fmt.Println("Please specify a repository with -r/--repo or run from within a repository.")
 			os.Exit(1)
 		}
 		repo = currentRepo
@@ -103,20 +111,22 @@ func main() {
 
 func showHelp() {
 	fmt.Println("GitHub Issues to Markdown Exporter")
-	fmt.Println("Usage: gh-export-issues [options] [owner/repo]")
+	fmt.Println("Usage: gh-export-issues [options]")
 	fmt.Println()
 	fmt.Println("Options:")
-	fmt.Println("  -o, --output DIR    Output directory")
-	fmt.Println("  -h, --help          Show this help message")
+	fmt.Println("  -o, --output DIR       Output directory")
+	fmt.Println("  -r, --repo OWNER/REPO  Repository to export (default: current repo)")
+	fmt.Println("  -h, --help             Show this help message")
 	fmt.Println()
 	fmt.Println("Default output directories:")
 	fmt.Println("  - Current repository: ./issues/")
 	fmt.Println("  - Specified repository: ./[repo-name]/issues/")
 	fmt.Println()
 	fmt.Println("Examples:")
-	fmt.Println("  gh-export-issues                     # Export to ./issues/")
-	fmt.Println("  gh-export-issues owner/repo           # Export to ./repo/issues/")
-	fmt.Println("  gh-export-issues -o ~/Documents/issues owner/repo")
+	fmt.Println("  gh-export-issues                          # Export current repo to ./issues/")
+	fmt.Println("  gh-export-issues -o .memo/issues          # Export current repo to .memo/issues/")
+	fmt.Println("  gh-export-issues -r owner/repo            # Export specified repo to ./repo/issues/")
+	fmt.Println("  gh-export-issues -r owner/repo -o ~/docs  # Export specified repo to ~/docs/")
 }
 
 func getCurrentRepo() (string, error) {

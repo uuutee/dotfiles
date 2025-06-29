@@ -44,24 +44,30 @@ go run main.go [options] [owner/repo]
 
 ```bash
 # カレントリポジトリの Issue をエクスポート（./issues/ に保存）
-./gh-export-issues
+gh-export-issues
 # または
 go run main.go
 
-# 特定のリポジトリを指定（./repo-name/issues/ に保存）
-./gh-export-issues owner/repo
+# カレントリポジトリを指定ディレクトリにエクスポート
+gh-export-issues -o .memo/issues
 # または
-go run main.go owner/repo
+go run main.go -o .memo/issues
 
-# 出力ディレクトリを指定
-./gh-export-issues -o ~/Documents/issues owner/repo
+# 特定のリポジトリを指定（./repo-name/issues/ に保存）
+gh-export-issues -r owner/repo
 # または
-go run main.go -o ~/Documents/issues owner/repo
+go run main.go -r owner/repo
+
+# リポジトリと出力ディレクトリの両方を指定
+gh-export-issues -r owner/repo -o ~/Documents/issues
+# または
+go run main.go -r owner/repo -o ~/Documents/issues
 ```
 
 ### オプション
 
 - `-o, --output DIR`: 出力ディレクトリを指定
+- `-r, --repo OWNER/REPO`: エクスポートするリポジトリを指定（デフォルト: カレントリポジトリ）
 - `-h, --help`: ヘルプメッセージを表示
 
 ### デフォルトの出力ディレクトリ
