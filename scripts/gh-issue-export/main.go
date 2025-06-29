@@ -65,7 +65,7 @@ func main() {
 	flag.StringVar(&repo, "r", "", "Repository (owner/repo)")
 	flag.StringVar(&repo, "repo", "", "Repository (owner/repo)")
 	flag.StringVar(&issueID, "id", "", "Specific issue ID to export")
-	flag.StringVar(&status, "status", "all", "Issue status: open, closed, or all (default: all)")
+	flag.StringVar(&status, "status", "open", "Issue status: open, closed, or all (default: open)")
 	flag.StringVar(&label, "label", "", "Filter by label")
 	flag.StringVar(&assignee, "assignee", "", "Filter by assignee")
 	flag.StringVar(&author, "author", "", "Filter by author")
@@ -129,7 +129,7 @@ func main() {
 	if filters.ID != "" {
 		fmt.Printf("Filter - Issue ID: %s\n", filters.ID)
 	}
-	if filters.Status != "all" {
+	if filters.Status != "open" {
 		fmt.Printf("Filter - Status: %s\n", filters.Status)
 	}
 	if filters.Label != "" {
@@ -158,7 +158,7 @@ func showHelp() {
 	fmt.Println("  -o, --output DIR       Output directory")
 	fmt.Println("  -r, --repo OWNER/REPO  Repository to export (default: current repo)")
 	fmt.Println("  -id ID                 Export specific issue by ID")
-	fmt.Println("  -status STATUS         Filter by status: open, closed, or all (default: all)")
+	fmt.Println("  -status STATUS         Filter by status: open, closed, or all (default: open)")
 	fmt.Println("  -label LABEL           Filter by label")
 	fmt.Println("  -assignee USER         Filter by assignee")
 	fmt.Println("  -author USER           Filter by author")
