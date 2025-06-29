@@ -2,6 +2,10 @@
 #        環境変数 & PATH 
 ####################################
 
+# Termius 用に日本語を設定
+export LANG=ja_JP.UTF-8
+export LC_ALL=ja_JP.UTF-8
+
 ###### PATH ######
 
 # src
