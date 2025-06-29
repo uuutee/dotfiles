@@ -13,8 +13,17 @@ GitHub リポジトリの Issue を Markdown ファイルとしてエクスポ�
 
 ## インストール
 
+### ビルドして実行
+
 ```bash
 go build -o gh-export-issues main.go
+./gh-export-issues
+```
+
+### ビルドせずに実行
+
+```bash
+go run main.go [options] [owner/repo]
 ```
 
 ## 使い方
@@ -24,12 +33,18 @@ go build -o gh-export-issues main.go
 ```bash
 # カレントリポジトリの Issue をエクスポート（./issues/ に保存）
 ./gh-export-issues
+# または
+go run main.go
 
 # 特定のリポジトリを指定（./repo-name/issues/ に保存）
 ./gh-export-issues owner/repo
+# または
+go run main.go owner/repo
 
 # 出力ディレクトリを指定
 ./gh-export-issues -o ~/Documents/issues owner/repo
+# または
+go run main.go -o ~/Documents/issues owner/repo
 ```
 
 ### オプション
