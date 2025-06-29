@@ -58,6 +58,7 @@ func main() {
 	var label string
 	var assignee string
 	var author string
+	var overwrite bool
 	var help bool
 
 	flag.StringVar(&outputDir, "o", "", "Output directory")
@@ -69,6 +70,7 @@ func main() {
 	flag.StringVar(&label, "label", "", "Filter by label")
 	flag.StringVar(&assignee, "assignee", "", "Filter by assignee")
 	flag.StringVar(&author, "author", "", "Filter by author")
+	flag.BoolVar(&overwrite, "overwrite", false, "Overwrite existing files (default: skip)")
 	flag.BoolVar(&help, "h", false, "Show help message")
 	flag.BoolVar(&help, "help", false, "Show help message")
 	flag.Parse()
@@ -141,8 +143,13 @@ func main() {
 	if filters.Author != "" {
 		fmt.Printf("Filter - Author: %s\n", filters.Author)
 	}
+	if overwrite {
+		fmt.Printf("Mode: Overwrite existing files\n")
+	} else {
+		fmt.Printf("Mode: Skip existing files\n")
+	}
 
-	if err := exportIssues(repo, outputDir, filters); err != nil {
+	if err := exportIssues(repo, outputDir, filters, overwrite); err != nil {
 		fmt.Printf("Error exporting issues: %v\n", err)
 		os.Exit(1)
 	}
@@ -162,6 +169,7 @@ func showHelp() {
 	fmt.Println("  -label LABEL           Filter by label")
 	fmt.Println("  -assignee USER         Filter by assignee")
 	fmt.Println("  -author USER           Filter by author")
+	fmt.Println("  -overwrite             Overwrite existing files (default: skip)")
 	fmt.Println("  -h, --help             Show this help message")
 	fmt.Println()
 	fmt.Println("Default output directories:")
@@ -188,7 +196,7 @@ func getCurrentRepo() (string, error) {
 
 
 
-func exportSingleIssue(repo, outputDir, issueID string) error {
+func exportSingleIssue(repo, outputDir, issueID string, overwrite bool) error {
 	fmt.Printf("Fetching issue #%s...\n", issueID)
 	
 	cmd := exec.Command("gh", "issue", "view", issueID, "--repo", repo,
@@ -203,15 +211,14 @@ func exportSingleIssue(repo, outputDir, issueID string) error {
 		return fmt.Errorf("failed to parse issue: %w", err)
 	}
 
-	if err := exportIssue(repo, outputDir, issue); err != nil {
+	if err := exportIssue(repo, outputDir, issue, overwrite); err != nil {
 		return fmt.Errorf("error exporting issue #%s: %w", issueID, err)
 	}
 	
-	fmt.Printf("Exporting issue #%d: %s\n", issue.Number, issue.Title)
 	return nil
 }
 
-func exportIssues(repo, outputDir string, filters IssueFilters) error {
+func exportIssues(repo, outputDir string, filters IssueFilters, overwrite bool) error {
 	fmt.Println("Fetching issues...")
 	
 	// Build command arguments
@@ -240,7 +247,7 @@ func exportIssues(repo, outputDir string, filters IssueFilters) error {
 	// Handle specific issue ID
 	if filters.ID != "" {
 		// For specific issue, use 'gh issue view' instead
-		return exportSingleIssue(repo, outputDir, filters.ID)
+		return exportSingleIssue(repo, outputDir, filters.ID, overwrite)
 	}
 	
 	cmd := exec.Command("gh", args...)
@@ -260,24 +267,66 @@ func exportIssues(repo, outputDir string, filters IssueFilters) error {
 	}
 
 	for _, issue := range issues {
-		if err := exportIssue(repo, outputDir, issue); err != nil {
+		if err := exportIssue(repo, outputDir, issue, overwrite); err != nil {
 			fmt.Printf("Error exporting issue #%d: %v\n", issue.Number, err)
 			continue
 		}
-		fmt.Printf("Exporting issue #%d: %s\n", issue.Number, issue.Title)
 	}
 
 	return nil
 }
 
-func exportIssue(repo, outputDir string, issue Issue) error {
-	// Create directory for the issue
-	issueDir := filepath.Join(outputDir, fmt.Sprintf("%d", issue.Number))
-	if err := os.MkdirAll(issueDir, 0755); err != nil {
-		return fmt.Errorf("failed to create issue directory: %w", err)
+func sanitizeFilename(title string) string {
+	// Replace filesystem unsafe characters
+	replacer := strings.NewReplacer(
+		"/", "-",
+		"\\", "-",
+		":", "-",
+		"*", "-",
+		"?", "-",
+		"\"", "'",
+		"<", "-",
+		">", "-",
+		"|", "-",
+		"\n", " ",
+		"\r", " ",
+		"\t", " ",
+	)
+	
+	sanitized := replacer.Replace(title)
+	
+	// Trim spaces and dots from the beginning and end
+	sanitized = strings.TrimSpace(sanitized)
+	sanitized = strings.Trim(sanitized, ".")
+	
+	// Limit length to 255 characters (common filesystem limit)
+	if len(sanitized) > 255 {
+		sanitized = sanitized[:255]
 	}
+	
+	// If the title is empty after sanitization, use a default
+	if sanitized == "" {
+		return "untitled"
+	}
+	
+	return sanitized
+}
 
-	filename := filepath.Join(issueDir, "index.md")
+func exportIssue(repo, outputDir string, issue Issue, overwrite bool) error {
+	sanitizedTitle := sanitizeFilename(issue.Title)
+	filename := filepath.Join(outputDir, fmt.Sprintf("%d_%s.md", issue.Number, sanitizedTitle))
+	
+	// Check if file exists and handle overwrite behavior
+	if !overwrite {
+		if _, err := os.Stat(filename); err == nil {
+			// File exists, skip it
+			fmt.Printf("Skipping issue #%d: %s (file exists)\n", issue.Number, issue.Title)
+			return nil
+		}
+	}
+	
+	fmt.Printf("Exporting issue #%d: %s\n", issue.Number, issue.Title)
+	
 	file, err := os.Create(filename)
 	if err != nil {
 		return err
