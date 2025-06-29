@@ -11,13 +11,25 @@ GitHub リポジトリの Issue を Markdown ファイルとしてエクスポ�
 - Go 1.16 以上
 - GitHub CLI (`gh`) がインストールされ、認証済みであること
 
+## PATH の設定
+
+dotfiles/bin に PATH を通すことで、どこからでも `gh-export-issues` コマンドを実行できます：
+
+```bash
+# ~/.zshrc または ~/.bashrc に以下を追加
+export PATH="$HOME/src/github.com/uuutee/dotfiles/bin:$PATH"
+```
+
 ## インストール
 
 ### ビルドして実行
 
 ```bash
+# dotfiles/bin にビルド（推奨）
+go build -o ../../bin/gh-export-issues main.go
+
+# または、カレントディレクトリにビルド
 go build -o gh-export-issues main.go
-./gh-export-issues
 ```
 
 ### ビルドせずに実行
