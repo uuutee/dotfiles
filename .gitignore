@@ -2,3 +2,4 @@
 .env
 .config/karabiner/automatic_backups/
 bin/
+.memo/
