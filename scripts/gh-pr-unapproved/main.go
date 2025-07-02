@@ -18,6 +18,7 @@ type Author struct {
 type Review struct {
 	Author      Author     `json:"author"`
 	Body        string     `json:"body"`
+	State       string     `json:"state"`
 	SubmittedAt *time.Time `json:"submittedAt"`
 }
 
@@ -32,6 +33,7 @@ type PR struct {
 	Title          string    `json:"title"`
 	Author         Author    `json:"author"`
 	URL            string    `json:"url"`
+	State          string    `json:"state"`
 	ReviewDecision *string   `json:"reviewDecision"`
 	IsDraft        bool      `json:"isDraft"`
 	CreatedAt      time.Time `json:"createdAt"`
@@ -43,6 +45,7 @@ type PRWithComments struct {
 	PR
 	LatestCommentTime *time.Time `json:"latestCommentTime"`
 	ReviewCount       int        `json:"reviewCount"`
+	ApproveCount      int        `json:"approveCount"`
 	CommentCount      int        `json:"commentCount"`
 }
 
@@ -58,6 +61,7 @@ func main() {
 		format     string
 		help       bool
 		showHelp   bool
+		limit      int
 	)
 
 	flag.StringVar(&comment, "c", "", "PRのコメントに含まれるテキストで検索")
@@ -66,6 +70,8 @@ func main() {
 	flag.StringVar(&repo, "repo", "", "対象リポジトリ (owner/repo)")
 	flag.StringVar(&format, "f", "table", "出力フォーマット: table, json")
 	flag.StringVar(&format, "format", "table", "出力フォーマット: table, json")
+	flag.IntVar(&limit, "l", 20, "取得するPRの最大数")
+	flag.IntVar(&limit, "limit", 20, "取得するPRの最大数")
 	flag.BoolVar(&help, "h", false, "このヘルプメッセージを表示")
 	flag.BoolVar(&showHelp, "help", false, "このヘルプメッセージを表示")
 	flag.Parse()
@@ -91,16 +97,16 @@ func main() {
 	fmt.Println()
 
 	// PRリストを取得
-	prs, err := getPRList(repo)
+	prs, err := getPRList(repo, limit)
 	if err != nil {
 		fmt.Printf("エラー: PRの取得に失敗しました: %v\n", err)
 		os.Exit(1)
 	}
 
-	// REVIEW_REQUIRED かつ isDraft が false のPRのみを抽出
+	// isDraft が false のPRのみを抽出
 	filteredPRs := []PR{}
 	for _, pr := range prs {
-		if pr.ReviewDecision != nil && *pr.ReviewDecision == "REVIEW_REQUIRED" && !pr.IsDraft {
+		if !pr.IsDraft {
 			filteredPRs = append(filteredPRs, pr)
 		}
 	}
@@ -115,6 +121,7 @@ func main() {
 				PR:                pr,
 				LatestCommentTime: nil,
 				ReviewCount:       0,
+				ApproveCount:      0,
 				CommentCount:      0,
 			})
 			continue
@@ -164,10 +171,19 @@ func main() {
 			latestTime = &allTimes[0]
 		}
 
+		// 承認数をカウント
+		approveCount := 0
+		for _, r := range details.Reviews {
+			if r.State == "APPROVED" {
+				approveCount++
+			}
+		}
+
 		prsWithComments = append(prsWithComments, PRWithComments{
 			PR:                pr,
 			LatestCommentTime: latestTime,
 			ReviewCount:       len(details.Reviews),
+			ApproveCount:      approveCount,
 			CommentCount:      len(details.Comments),
 		})
 	}
@@ -192,7 +208,7 @@ func main() {
 }
 
 func printHelp() {
-	fmt.Println("gh-pr-unapproved - レビューが必要な(REVIEW_REQUIRED)PRの情報を表示")
+	fmt.Println("gh-pr-unapproved - オープンな非ドラフトPRの情報を表示")
 	fmt.Println()
 	fmt.Println("使い方: gh-pr-unapproved [オプション]")
 	fmt.Println()
@@ -200,12 +216,14 @@ func printHelp() {
 	fmt.Println("  -c, --comment TEXT     PRのコメントに含まれるテキストで検索")
 	fmt.Println("  -r, --repo OWNER/REPO  対象リポジトリ (デフォルト: 現在のリポジトリ)")
 	fmt.Println("  -f, --format FORMAT    出力フォーマット: table, json (デフォルト: table)")
+	fmt.Println("  -l, --limit NUMBER     取得するPRの最大数 (デフォルト: 20)")
 	fmt.Println("  -h, --help             このヘルプメッセージを表示")
 	fmt.Println()
 	fmt.Println("例:")
-	fmt.Println("  gh-pr-unapproved                               # 現在のリポジトリのレビューが必要なPRを表示")
+	fmt.Println("  gh-pr-unapproved                               # 現在のリポジトリのオープンPRを表示")
 	fmt.Println("  gh-pr-unapproved -c \"LGTM\"                     # \"LGTM\"を含むコメントがあるPR")
 	fmt.Println("  gh-pr-unapproved -r owner/repo -f json         # 指定リポジトリのPRをJSON形式で出力")
+	fmt.Println("  gh-pr-unapproved -l 50                         # 最大50件のPRを取得")
 }
 
 func getCurrentRepo() (string, error) {
@@ -217,12 +235,12 @@ func getCurrentRepo() (string, error) {
 	return strings.TrimSpace(string(output)), nil
 }
 
-func getPRList(repo string) ([]PR, error) {
+func getPRList(repo string, limit int) ([]PR, error) {
 	cmd := exec.Command("gh", "pr", "list",
 		"--repo", repo,
 		"--state", "open",
-		"--limit", "20",
-		"--json", "number,title,author,url,reviewDecision,isDraft,createdAt,updatedAt,reviews",
+		"--limit", fmt.Sprintf("%d", limit),
+		"--json", "number,title,author,url,state,reviewDecision,isDraft,createdAt,updatedAt,reviews",
 	)
 	output, err := cmd.Output()
 	if err != nil {
@@ -282,14 +300,14 @@ func outputTable(prs []PRWithComments, repo string) {
 	fmt.Println()
 
 	// ヘッダー
-	fmt.Printf("%-8s %-35s %-12s %-8s %-8s %-12s %-50s\n", "PR#", "Title", "Author", "Comments", "Reviews", "Last updated", "URL")
-	fmt.Printf("%-8s %-35s %-12s %-8s %-8s %-12s %-50s\n", "---", "-----", "------", "--------", "-------", "------------", "---")
+	fmt.Printf("%-2s %-8s %-17s %-12s %-8s %-8s %-8s %-12s %-50s\n", "", "PR#", "Title", "Author", "State", "Comments", "Reviews", "Last updated", "URL")
+	fmt.Printf("%-2s %-8s %-17s %-12s %-8s %-8s %-8s %-12s %-50s\n", "", "---", "-----", "------", "-----", "--------", "-------", "------------", "---")
 
 	// 各PRを表示
 	for _, pr := range prs {
 		title := pr.Title
-		if len(title) > 35 {
-			title = title[:35]
+		if len(title) > 10 {
+			title = title[:10]
 		}
 
 		commentsDisplay := fmt.Sprintf("%d", pr.CommentCount)
@@ -297,10 +315,23 @@ func outputTable(prs []PRWithComments, repo string) {
 
 		timeAgo := formatTimeAgo(pr.LatestCommentTime)
 
-		fmt.Printf("%-8s %-35s %-12s %-8s %-8s %-12s %-50s\n",
+		author := "@" + pr.Author.Login
+		if len(author) > 10 {
+			author = author[:10]
+		}
+
+		// 承認状態に基づいてチェックマークを表示
+		checkMark := "   "
+		if pr.ApproveCount > 0 {
+			checkMark = "✅ "
+		}
+
+		fmt.Printf("%s%-8s %-17s %-12s %-8s %-8s %-8s %-12s %-50s\n",
+			checkMark,
 			fmt.Sprintf("#%d", pr.Number),
 			title,
-			"@"+pr.Author.Login,
+			author,
+			pr.State,
 			commentsDisplay,
 			reviewsDisplay,
 			timeAgo,
