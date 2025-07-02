@@ -111,6 +111,7 @@ alias ghei='$DOTFILES_DIR/scripts/gh_export_issues/main.sh'
 
 # tmux
 alias tmn="$DOTFILES_DIR/scripts/tmux_unique_session/main.sh"
+alias tma="$DOTFILES_DIR/scripts/tmux_attach_peco/main.sh"
 
 # ghq & hub
 alias cdg='cd $(ghq root)/$(ghq list | peco)'
