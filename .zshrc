@@ -109,8 +109,6 @@ alias gp='git push -u origin HEAD && gh-pr-url'
 # GitHub issues export
 alias ghei='$DOTFILES_DIR/scripts/gh_export_issues/main.sh'
 
-# GitHub PR 未承認の一覧を表示
-alias ghprun="$DOTFILES_DIR/scripts/gh-pr-unapproved/main.sh"
 
 # tmux
 alias tmn="$DOTFILES_DIR/scripts/tmux_unique_session/main.sh"
