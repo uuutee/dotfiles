@@ -106,6 +106,15 @@ alias gupdate="$DOTFILES_DIR/scripts/git_update/main.sh"
 # git push && PR 作成URLの表示
 alias gp='git push -u origin HEAD && gh-pr-url'
 
+# Claude でPRをレビュー
+function claude-review() {
+  if [ -z "$1" ]; then
+    echo "使用方法: claude-review <PR番号>"
+    return 1
+  fi
+  claude -p "/review #$1 日本語で"
+}
+
 # GitHub issues export
 alias ghei='$DOTFILES_DIR/scripts/gh_export_issues/main.sh'
 
