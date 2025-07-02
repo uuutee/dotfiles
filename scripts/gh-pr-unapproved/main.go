@@ -62,6 +62,7 @@ func main() {
 		help       bool
 		showHelp   bool
 		limit      int
+		state      string
 	)
 
 	flag.StringVar(&comment, "c", "", "PRのコメントに含まれるテキストで検索")
@@ -72,6 +73,8 @@ func main() {
 	flag.StringVar(&format, "format", "table", "出力フォーマット: table, json")
 	flag.IntVar(&limit, "l", 20, "取得するPRの最大数")
 	flag.IntVar(&limit, "limit", 20, "取得するPRの最大数")
+	flag.StringVar(&state, "s", "open", "PRの状態: open, closed, all")
+	flag.StringVar(&state, "state", "open", "PRの状態: open, closed, all")
 	flag.BoolVar(&help, "h", false, "このヘルプメッセージを表示")
 	flag.BoolVar(&showHelp, "help", false, "このヘルプメッセージを表示")
 	flag.Parse()
@@ -97,7 +100,7 @@ func main() {
 	fmt.Println()
 
 	// PRリストを取得
-	prs, err := getPRList(repo, limit)
+	prs, err := getPRList(repo, limit, state)
 	if err != nil {
 		fmt.Printf("エラー: PRの取得に失敗しました: %v\n", err)
 		os.Exit(1)
@@ -217,6 +220,7 @@ func printHelp() {
 	fmt.Println("  -r, --repo OWNER/REPO  対象リポジトリ (デフォルト: 現在のリポジトリ)")
 	fmt.Println("  -f, --format FORMAT    出力フォーマット: table, json (デフォルト: table)")
 	fmt.Println("  -l, --limit NUMBER     取得するPRの最大数 (デフォルト: 20)")
+	fmt.Println("  -s, --state STATE      PRの状態: open, closed, all (デフォルト: open)")
 	fmt.Println("  -h, --help             このヘルプメッセージを表示")
 	fmt.Println()
 	fmt.Println("例:")
@@ -224,6 +228,7 @@ func printHelp() {
 	fmt.Println("  gh-pr-unapproved -c \"LGTM\"                     # \"LGTM\"を含むコメントがあるPR")
 	fmt.Println("  gh-pr-unapproved -r owner/repo -f json         # 指定リポジトリのPRをJSON形式で出力")
 	fmt.Println("  gh-pr-unapproved -l 50                         # 最大50件のPRを取得")
+	fmt.Println("  gh-pr-unapproved -s closed                     # クローズされたPRを表示")
 }
 
 func getCurrentRepo() (string, error) {
@@ -235,10 +240,10 @@ func getCurrentRepo() (string, error) {
 	return strings.TrimSpace(string(output)), nil
 }
 
-func getPRList(repo string, limit int) ([]PR, error) {
+func getPRList(repo string, limit int, state string) ([]PR, error) {
 	cmd := exec.Command("gh", "pr", "list",
 		"--repo", repo,
-		"--state", "open",
+		"--state", state,
 		"--limit", fmt.Sprintf("%d", limit),
 		"--json", "number,title,author,url,state,reviewDecision,isDraft,createdAt,updatedAt,reviews",
 	)
