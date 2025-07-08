@@ -5,6 +5,7 @@
 	root = ~/src
 [core]
 	whitespace = cr-at-eol
+	hooksPath = ~/.config/git/hooks
 [alias]
 	alias = !git config --get-regexp '^alias\\.' | sed 's/alias\\.\\([^ ]*\\) \\(.*\\)/\\1\\\t => \\2/' | sort
 	s  = status
