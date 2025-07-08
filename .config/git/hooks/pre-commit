@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+branch="$(git symbolic-ref --quiet --short HEAD || echo HEAD)"
+if [[ "$branch" == "main" || "$branch" == "master" ]]; then
+  printf "\e[31m✗  main ブランチへ直接コミットは禁止です。別ブランチを切ってください。\e[0m\n" >&2
+  exit 1
+fi
