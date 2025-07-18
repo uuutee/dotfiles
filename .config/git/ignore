@@ -32,3 +32,6 @@ sftp-config.json
 
 # Claude
 **/.claude/settings.local.json
+
+# git worktree
+/.worktrees/

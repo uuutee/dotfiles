@@ -29,6 +29,11 @@ if [[ ! -L "$HOME/.config/karabiner" ]]; then
     ln -s ${SCRIPT_DIR}/.config/karabiner $HOME/.config/karabiner
 fi
 
+# tmux
+if [[ ! -L "$HOME/.tmux.conf" ]]; then
+    ln -s ${SCRIPT_DIR}/.tmux.conf $HOME/.tmux.conf
+fi
+
 # Remove localized
 ${SCRIPT_DIR}/scripts/shell/remove_localized.sh
 
