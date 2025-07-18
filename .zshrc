@@ -115,6 +115,9 @@ function claude-review() {
   claude -p "/review #$1 日本語で"
 }
 
+# Gemini でPRをレビュー
+alias gemini-review="$DOTFILES_DIR/scripts/gemini-review/main.sh"
+
 # GitHub issues export
 alias ghei='$DOTFILES_DIR/scripts/gh_export_issues/main.sh'
 
