@@ -211,9 +211,9 @@ func main() {
 }
 
 func printHelp() {
-	fmt.Println("gh-pr-unapproved - オープンな非ドラフトPRの情報を表示")
+	fmt.Println("gh-pr-active - オープンな非ドラフトPRの情報を表示")
 	fmt.Println()
-	fmt.Println("使い方: gh-pr-unapproved [オプション]")
+	fmt.Println("使い方: gh-pr-active [オプション]")
 	fmt.Println()
 	fmt.Println("オプション:")
 	fmt.Println("  -c, --comment TEXT     PRのコメントに含まれるテキストで検索")
@@ -224,11 +224,11 @@ func printHelp() {
 	fmt.Println("  -h, --help             このヘルプメッセージを表示")
 	fmt.Println()
 	fmt.Println("例:")
-	fmt.Println("  gh-pr-unapproved                               # 現在のリポジトリのオープンPRを表示")
-	fmt.Println("  gh-pr-unapproved -c \"LGTM\"                     # \"LGTM\"を含むコメントがあるPR")
-	fmt.Println("  gh-pr-unapproved -r owner/repo -f json         # 指定リポジトリのPRをJSON形式で出力")
-	fmt.Println("  gh-pr-unapproved -l 50                         # 最大50件のPRを取得")
-	fmt.Println("  gh-pr-unapproved -s closed                     # クローズされたPRを表示")
+	fmt.Println("  gh-pr-active                               # 現在のリポジトリのオープンPRを表示")
+	fmt.Println("  gh-pr-active -c \"LGTM\"                     # \"LGTM\"を含むコメントがあるPR")
+	fmt.Println("  gh-pr-active -r owner/repo -f json         # 指定リポジトリのPRをJSON形式で出力")
+	fmt.Println("  gh-pr-active -l 50                         # 最大50件のPRを取得")
+	fmt.Println("  gh-pr-active -s closed                     # クローズされたPRを表示")
 }
 
 func getCurrentRepo() (string, error) {
