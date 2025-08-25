@@ -1,26 +1,26 @@
-# gh-pr-unapproved
+# gh-pr-active
 
 特定のコメントが含まれていて、かつ未承認（unapproved）の PR を検索・表示する CLI ツール
 
 ## 概要
 
-`gh-pr-unapproved` は GitHub CLI (`gh`) を使用して、レビューが承認されていない PR の中から、特定のコメントを含むものを検索できるツールです。
+`gh-pr-active` は GitHub CLI (`gh`) を使用して、レビューが承認されていない PR の中から、特定のコメントを含むものを検索できるツールです。
 
 ## インストール
 
 ```bash
 # ビルド
-cd /path/to/dotfiles/scripts/gh-pr-unapproved
+cd /path/to/dotfiles/scripts/gh-pr-active
 make build
 
 # または直接go buildを実行
-go build -o ../../bin/gh-pr-unapproved
+go build -o ../../bin/gh-pr-active
 
 # PATHに /path/to/dotfiles/bin を追加していない場合は追加
 # export PATH="$PATH:/path/to/dotfiles/bin"
 
 # 直接実行
-/path/to/dotfiles/bin/gh-pr-unapproved
+/path/to/dotfiles/bin/gh-pr-active
 ```
 
 ## 使い方
@@ -28,7 +28,7 @@ go build -o ../../bin/gh-pr-unapproved
 ### ビルドせずに直接実行
 
 ```bash
-cd /path/to/dotfiles/scripts/gh-pr-unapproved
+cd /path/to/dotfiles/scripts/gh-pr-active
 go run main.go
 go run main.go -r owner/repo
 go run main.go -c "LGTM" -f json
@@ -38,22 +38,22 @@ go run main.go -c "LGTM" -f json
 
 ```bash
 # 基本的な使い方（現在のリポジトリの未承認PRを表示）
-gh-pr-unapproved
+gh-pr-active
 
 # 特定のコメントを含むPRを検索
-gh-pr-unapproved -c "LGTM"
-gh-pr-unapproved --comment "needs review"
+gh-pr-active -c "LGTM"
+gh-pr-active --comment "needs review"
 
 # 特定のリポジトリを指定
-gh-pr-unapproved -r owner/repo
-gh-pr-unapproved --repo organization/project
+gh-pr-active -r owner/repo
+gh-pr-active --repo organization/project
 
 # JSON形式で出力
-gh-pr-unapproved -f json
-gh-pr-unapproved --format json
+gh-pr-active -f json
+gh-pr-active --format json
 
 # 組み合わせ
-gh-pr-unapproved -r owner/repo -c "LGTM" -f json
+gh-pr-active -r owner/repo -c "LGTM" -f json
 ```
 
 ## オプション
