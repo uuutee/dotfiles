@@ -1,19 +1,27 @@
 #!/bin/bash
 
 # Gemini CLI PR Review Script
-# Usage: ./main.sh <pr-number> <prompt>
+# Usage: ./main.sh <pr-number> [prompt]
 
 set -euo pipefail
 
 # Check if required arguments are provided
-if [ $# -lt 2 ]; then
-    echo "Usage: $0 <pr-number> <prompt>"
-    echo "Example: $0 123 \"コードの品質をレビューしてください\""
+if [ $# -lt 1 ]; then
+    echo "Usage: $0 <pr-number> [prompt]"
+    echo "Example: $0 123"
+    echo "Example: $0 123 \"セキュリティの観点でレビューしてください\""
     exit 1
 fi
 
 PR_NUMBER="$1"
-PROMPT="$2"
+# Use provided prompt or default
+DEFAULT_PROMPT="このPRについて、以下の観点でレビューしてください：
+1. コードの品質と可読性
+2. 潜在的なバグやエラーハンドリング
+3. パフォーマンスの観点
+4. セキュリティの観点
+5. より良い実装方法の提案"
+PROMPT="${2:-$DEFAULT_PROMPT}"
 
 # Get PR diff using gh command
 echo "Fetching PR #${PR_NUMBER} diff..."
