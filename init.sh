@@ -1,6 +1,21 @@
 #! /bin/bash
 SCRIPT_DIR=$(cd $(dirname $0) && pwd)
 
+link_shared_prompts() {
+    local target_dir=$1
+    local link_path=$2
+    local parent_dir
+    parent_dir=$(dirname "${link_path}")
+
+    mkdir -p "${parent_dir}"
+
+    if [[ -e "${link_path}" && ! -L "${link_path}" ]]; then
+        mv "${link_path}" "${link_path}.bak.$(date +%Y%m%d%H%M%S)"
+    fi
+
+    ln -sfn "${target_dir}" "${link_path}"
+}
+
 # Permit execute script
 chmod +x ${SCRIPT_DIR}/scripts/*
 
@@ -32,6 +47,14 @@ fi
 # tmux
 if [[ ! -L "$HOME/.tmux.conf" ]]; then
     ln -s ${SCRIPT_DIR}/.tmux.conf $HOME/.tmux.conf
+fi
+
+# Shared prompts for CLI tools
+SHARED_PROMPTS_DIR=${SCRIPT_DIR}/prompts/shared
+if [[ -d "${SHARED_PROMPTS_DIR}" ]]; then
+    link_shared_prompts "${SHARED_PROMPTS_DIR}" "${HOME}/.codex/prompts"
+    link_shared_prompts "${SHARED_PROMPTS_DIR}" "${HOME}/.claude/commands"
+    link_shared_prompts "${SHARED_PROMPTS_DIR}" "${HOME}/.cursor/commands"
 fi
 
 # Remove localized
