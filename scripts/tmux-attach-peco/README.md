@@ -1,4 +1,4 @@
-# tmux_attach_peco
+# tmux-attach-peco
 
 peco を使用して tmux セッションを選択し、アタッチするスクリプト
 
@@ -9,7 +9,7 @@ peco を使用して tmux セッションを選択し、アタッチするスク
 ## 使い方
 
 ```bash
-tmux_attach_peco
+tmux-attach-peco
 ```
 
 ## 動作
@@ -36,7 +36,7 @@ tmux_attach_peco
 
 2. エイリアスを設定（.zshrc の例）：
    ```bash
-   alias tma='/path/to/tmux_attach_peco/main.sh'
+   alias tma='/path/to/tmux-attach-peco/main.sh'
    ```
 
 ## 必要な依存関係

@@ -95,13 +95,13 @@ alias gd='git diff'
 alias gdc='git diff --cached'
 
 # 変更したファイルをすべてコミット
-alias gsave="$DOTFILES_DIR/scripts/git_save_point/main.sh"
+alias gsave="$DOTFILES_DIR/scripts/git-save-point/main.sh"
 
 # ベースコミットから新規ブランチを作成して、それ以降のコミットを移動する
-alias gmv="$DOTFILES_DIR/scripts/git_move_commits/main.sh"
+alias gmv="$DOTFILES_DIR/scripts/git-move-commits/main.sh"
 
 # 最新のブランチを取得してリベースする
-alias gupdate="$DOTFILES_DIR/scripts/git_update/main.sh"
+alias gupdate="$DOTFILES_DIR/scripts/git-update/main.sh"
 
 # git push && PR 作成URLの表示
 alias gp='git push -u origin HEAD && gh-pr-url'
@@ -122,8 +122,8 @@ alias gemini-review="$DOTFILES_DIR/scripts/gemini-review/main.sh"
 alias ghei='$DOTFILES_DIR/scripts/gh_export_issues/main.sh'
 
 # tmux
-alias tmn="$DOTFILES_DIR/scripts/tmux_unique_session/main.sh"
-alias tma="$DOTFILES_DIR/scripts/tmux_attach_peco/main.sh"
+alias tmn="$DOTFILES_DIR/scripts/tmux-unique-session/main.sh"
+alias tma="$DOTFILES_DIR/scripts/tmux-attach-peco/main.sh"
 
 # make
 alias make-peco="$DOTFILES_DIR/scripts/make-peco/main.sh"

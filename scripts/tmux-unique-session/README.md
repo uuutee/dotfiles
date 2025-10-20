@@ -1,4 +1,4 @@
-# tmux_unique_session
+# tmux-unique-session
 
 重複しないユニークな名前で tmux セッションを作成するスクリプト
 
@@ -9,7 +9,7 @@
 ## 使い方
 
 ```bash
-tmux_unique_session [base_session_name] [additional_tmux_new_args...]
+tmux-unique-session [base_session_name] [additional_tmux_new_args...]
 ```
 
 ### 引数
@@ -21,13 +21,13 @@ tmux_unique_session [base_session_name] [additional_tmux_new_args...]
 
 ```bash
 # カレントディレクトリ名でセッションを作成
-tmux_unique_session
+tmux-unique-session
 
 # "myproject" という名前でセッションを作成
-tmux_unique_session myproject
+tmux-unique-session myproject
 
 # "myproject" という名前で、初期コマンドを指定してセッションを作成
-tmux_unique_session myproject vim
+tmux-unique-session myproject vim
 ```
 
 ## 動作
@@ -49,5 +49,5 @@ tmux_unique_session myproject vim
 2. PATH の通った場所にシンボリックリンクを作成するか、エイリアスを設定：
    ```bash
    # エイリアスの例
-   alias tus='/path/to/tmux_unique_session/main.sh'
+   alias tus='/path/to/tmux-unique-session/main.sh'
    ```

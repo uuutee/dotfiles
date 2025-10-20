@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# 最新のブランチを取得してリベースする
-# Usage: ./git_update.sh [base-branch]
+# git-update - 最新のブランチを取得してリベースするヘルパー
+# Usage: git-update [base-branch]
 # If no base branch is provided, 'main' is used by default.
 
 # 現在のブランチを取得

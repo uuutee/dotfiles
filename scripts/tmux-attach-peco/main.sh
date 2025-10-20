@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# tmux_attach_peco - pecoを使ってtmuxセッションを選択してアタッチする
-# 使い方: tmux_attach_peco
+# tmux-attach-peco - pecoを使ってtmuxセッションを選択しアタッチするヘルパー
+# 使い方: tmux-attach-peco
 
 # tmuxセッションが存在するかチェック
 if ! tmux ls >/dev/null 2>&1; then
