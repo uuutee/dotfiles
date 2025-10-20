@@ -1,4 +1,4 @@
-# tmux_unique_session
+# tmux-unique-session
 
 重複しないユニークな名前で tmux セッションを作成するスクリプト
 
@@ -49,5 +49,5 @@ tmux_unique_session myproject vim
 2. PATH の通った場所にシンボリックリンクを作成するか、エイリアスを設定：
    ```bash
    # エイリアスの例
-   alias tus='/path/to/tmux_unique_session/main.sh'
+   alias tus='/path/to/tmux-unique-session/main.sh'
    ```

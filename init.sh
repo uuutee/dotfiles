@@ -35,7 +35,7 @@ if [[ ! -L "$HOME/.tmux.conf" ]]; then
 fi
 
 # Remove localized
-${SCRIPT_DIR}/scripts/shell/remove_localized.sh
+${SCRIPT_DIR}/scripts/remove-localized/main.sh
 
 # Permit QuickLook plugin
 # https://github.com/whomwah/qlstephen/issues/81#issuecomment-582365549
