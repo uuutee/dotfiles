@@ -9,7 +9,7 @@ peco を使用して tmux セッションを選択し、アタッチするスク
 ## 使い方
 
 ```bash
-tmux_attach_peco
+tmux-attach-peco
 ```
 
 ## 動作
